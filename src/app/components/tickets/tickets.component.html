@@ -1,0 +1,115 @@
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">{{tituloPage}}</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="/inicio/0">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/inicio/0">Inicio</a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="row">
+        <div class="wizard-container wizard-round col-md-9">
+
+            <form [formGroup]="nuevoTicket" (ngSubmit)="crearTicket()">
+
+                <div class="wizard-body">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <!-- ingresar nombres -->
+                            <div class="form-group">
+                                <label for="userNombres">Nombres
+                                    <span class="required-label">*</span>
+                                </label>
+                                <input type="text" class="form-control" placeholder=" {{ datosUsuario.userNombres }}"
+                                    id="userNombres" name="userNombres" formControlName="userNombres" disabled >
+                            </div>
+
+                            <!-- ingresar apellidos -->
+                            <div class="form-group">
+                                <label for="userApellidos">Apellidos
+                                    <span class="required-label">*</span>
+                                </label>
+                                <input type="text" class="form-control" placeholder=" {{ datosUsuario.userApellidos }}"
+                                    id="userApellidos" name="userApellidos" formControlName="userApellidos" disabled>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="userContacto">Contacto
+                                    <span class="required-label">*</span>
+                                </label>
+                                <input type="text" class="form-control" placeholder=" {{ datosUsuario.userContacto }}"
+                                    id="userContacto" name="userContacto" formControlName="userContacto" disabled>
+                            </div>
+
+
+                            
+                           
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="otroContacto">Otro Contacto
+                                    
+                                    
+                                </label>
+                                <input type="text" class="form-control" placeholder="Escribe otro número de contacto"
+                                    id="otroContacto" name="otroContacto" formControlName="otroContacto" >
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="titulo">Titulo Ticket
+                                    
+                                    <span class="required-label">*</span>
+                                </label>
+                                <input type="text" class="form-control" placeholder="Escribe el titulo del ticket"
+                                    id="titulo" name="titulo" formControlName="titulo" >
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="descripcion">Descripción
+                                    <span class="required-label">*</span>
+                                </label>
+
+                                <textarea class="form-control" rows="7" id="descripcion" name="descripcion"
+                                    formControlName="descripcion">
+                                </textarea>
+
+                            </div>
+
+                     
+
+                        </div>
+
+                    </div>
+                </div>
+
+                
+
+                <div class="wizard-action">
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-next btn-danger">
+                            <i class="fas fa-save "></i> Guardar
+                        </button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>

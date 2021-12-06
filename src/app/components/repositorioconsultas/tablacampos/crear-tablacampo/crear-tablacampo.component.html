@@ -1,0 +1,141 @@
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">{{tituloPage}}</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Inicio</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/repoconsulta/tablacampo/lista">Tabla Campo</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="wizard-container wizard-round col-md-9">
+            <form [formGroup]="nuevaFuenteOficial" (ngSubmit)="crearRegistro()">
+                <div class="wizard-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- ingresar nombres -->
+                            <div class="form-group" [class.has-error]="identificadorNoValid"
+                            [class.has-success]="identificadorValid">
+                                <label for="name">Identificador
+                                    <span class="required-label">*</span>
+                                    </label>
+                                <input type="text" class="form-control" placeholder="Escribe el identificador de la Tabla Campo" id="identificador" name="identificador" formControlName="identificador">
+                            </div>
+                            <div class="form-group" [class.has-error]="NombreNoValid"
+                            [class.has-success]="NombreValid">
+                                <label for="name">Nombre
+                                    <span class="required-label">*</span>
+                                    </label>
+                                <input type="text" class="form-control" placeholder="Escribe el Nombre de la Tabla Campo" id="Nombre" name="Nombre" formControlName="Nombre">
+                            </div>
+                          
+
+                            <div class="form-group">
+                                <label for="Descripcion">Descripción
+                                   
+                                </label>
+
+                                <textarea class="form-control" rows="7" id="Descripcion" name="Descripcion"
+                                    formControlName="Descripcion">
+                                </textarea>
+
+                            </div>
+
+
+                            <div class="form-group" [class.has-error]="ManualNoValid"
+                            [class.has-success]="ManualValid">
+                                <label for="name">Manual
+                                    <span class="required-label">*</span>
+                                    </label>
+                                <input type="text" class="form-control" placeholder="Escribe el Manual de la Tabla Campo" id="Manual" name="Manual" formControlName="Manual">
+                            </div>
+                            <div class="form-group" [class.has-error]="ProfundidadNoValid"
+                            [class.has-success]="ProfundidadValid">
+                                <label for="name">Profundidad
+                                    <span class="required-label">*</span>
+                                    </label>
+                                <input type="text" class="form-control" placeholder="Escribe la Profundidad de la Tabla Campo" id="Profundidad" name="Profundidad" formControlName="Profundidad">
+                            </div>
+                           
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="form-group" [class.has-error]="LongitudNoValid"
+                            [class.has-success]="LongitudValid">
+                                <label for="name">Longitud
+                                    <span class="required-label">*</span>
+                                    </label>
+                                <input type="text" class="form-control" placeholder="Escribe la Longitud de la Tabla Campo" id="Longitud" name="Longitud" formControlName="Longitud">
+                            </div>
+
+
+                            <div class="form-group" [class.has-error]="DecimalesNoValid"
+                            [class.has-success]="DecimalesValid">
+                                <label for="name">Decimales
+                                    <span class="required-label">*</span>
+                                    </label>
+                                <input type="text" class="form-control" placeholder="Escribe los Decimales de la Tabla Campo" id="Decimales" name="Decimales" formControlName="Decimales">
+                            </div>
+                            <div class="form-group" [class.has-error]="LlavePrimariaNoValid"
+                            [class.has-success]="LlavePrimariaValid">
+                                <label for="name">Llave Primaria
+                                    <span class="required-label">*</span>
+                                    </label>
+                                <input type="text" class="form-control" placeholder="Escribe la Llave Primaria de la Tabla Campo" id="LlavePrimaria" name="LlavePrimaria" formControlName="LlavePrimaria">
+                            </div>
+                            <div class="form-group" [class.has-error]="PermiteNulosNoValid"
+                            [class.has-success]="PermiteNulosValid">
+                                <label for="name">Permite Nulos
+                                    <span class="required-label">*</span>
+                                    </label>
+                                <input type="text" class="form-control" placeholder="Escribe si la tabla Permite Nulos" id="PermiteNulos " name="PermiteNulos" formControlName="PermiteNulos">
+                            </div>
+                            
+                              <!-- seleccionar tabla -->
+                              <div class="form-group " [class.has-error]="repositorioTablaNoValid"
+                              [class.has-success]="repositorioTablaValid">
+                                <label for="repositorioTabla">Seleccionar Tabla asociada
+                                    <span class="required-label">*</span>
+                                </label>
+                                <div class="select2-input">
+                                    <select class="form-control" id="repositorioTabla" name="repositorioTabla"
+                                        formControlName="repositorioTabla">
+                                        <option value="" disabled>Selecciona una opción</option>
+                                        <option [value]="item._id" *ngFor="let item of listaTablas">{{ item.nombre }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+
+                <div class="wizard-action">
+                    <div class="pull-right">
+                        <button type="submit" [ngClass]='botonGuardar'>
+                            <i class="fas fa-save "></i> Guardar
+                        </button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">{{tituloPage}}</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Inicio</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/repoconsulta/tabla/lista">Tablas</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="wizard-container wizard-round col-md-9">
+            <form [formGroup]="nuevaFuenteOficial" (ngSubmit)="crearRegistro()">
+                <div class="wizard-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- ingresar nombres -->
+                            <div class="form-group" [class.has-error]="identificadorNoValid"
+                            [class.has-success]="identificadorValid">
+                                <label for="name">Identificador
+                                    <span class="required-label">*</span>
+                                    </label>
+                                <input type="text" class="form-control" placeholder="Escribe el identificador de la Tabla" id="identificador" name="identificador" formControlName="identificador">
+                            </div>
+                            <div class="form-group" [class.has-error]="nombreNoValid"
+                            [class.has-success]="nombreValid">
+                                <label for="name">Nombre
+                                    <span class="required-label">*</span>
+                                    </label>
+                                <input type="text" class="form-control" placeholder="Escribe el nombre de la Tabla" id="nombre" name="nombre" formControlName="nombre">
+                            </div>
+                            <div class="form-group "  [class.has-error]="repositorioEsquemaNoValid"
+                            [class.has-success]="repositorioEsquemaValid">
+                                <label for="repositorio">Seleccionar Esquema asociado
+                                    <span class="required-label">*</span>
+                                </label>
+                                <div class="select2-input">
+                                    <select class="form-control" id="repositorioEsquema" name="repositorioEsquema"
+                                        formControlName="repositorioEsquema">
+                                        <option value="" disabled>Selecciona una opción</option>
+                                        <option [value]="item._id" *ngFor="let item of listaEsquemas">{{ item.nombre }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wizard-action">
+                    <div class="pull-right">
+                        <button type="submit" [ngClass]='botonGuardar'>
+                            <i class="fas fa-save "></i> Guardar
+                        </button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

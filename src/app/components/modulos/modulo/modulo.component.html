@@ -1,0 +1,119 @@
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">{{tituloPage}}</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Inicio</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/modulo/lista">Modulos</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <!-- lista de usuarios -->
+            <section class="card mt-4">
+                <form [formGroup]="moduloFormulario" (ngSubmit)="guardarModulo()">
+                    <div class="card-header">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-md-5">
+                                <div class="form-group" [class.has-error]="tituloNoValid"
+                                [class.has-success]="tituloValid">
+                                    <label for="titulo">Nombre del Modulo
+                                        <span class="required-label">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="titulo" name="titulo"
+                                        placeholder="Ingrese el nombre del modulo" formControlName="titulo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="titulo">Icono
+                                        
+                                    </label>
+                                    <input type="text" class="form-control" id="icono" name="icono"
+                                        placeholder="Inserte un icono de fast icon" formControlName="icono">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nombreRol">Submenus
+                                        
+                                    </label>
+                                    <div class="select2-input">
+                                        <select
+                                            (change)="selectOption($event.target.options[$event.target.options.selectedIndex].text, $event.target.value)"
+                                            class="form-control" id="submenus" name="submenus" formControlName="submenus">
+                                            <option value="" disabled>Selecciona una opción</option>
+                                            <option [value]="submen._id" *ngFor="let submen of listaSubmenus">{{ submen.titulo }}
+                                            </option>
+                                        </select>
+                                        <br>
+                                        <button type="button" [ngClass]='botonAgregar'
+                                            (click)="agregar()">
+                                            <i class="fas fa-user-plus"></i>
+                                            Agregar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group list-group-messages list-group-flush">
+                        <section class="card mt-4">
+
+                            <!-- imprimimos la lista de roles para los usuarios -->
+                            <div class="list-group list-group-messages list-group-flush">
+
+                                <table class="table mt-3">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Submenu</th>
+                                       
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of selectedSubmenus; let i=index ">
+                                            <td>{{ i + 1 }}</td>
+                                            <td>{{ item.titulo }}</td>
+                                       
+                                            <td>
+                                                <button type="button" class="btn btn-danger"
+                                                    (click)="quitar(i)">
+                                                    <i class="fas fa-user-plus"></i>
+                                                    Quitar
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </section>
+                    </div>
+                    <div class="wizard-action">
+                        <div class="pull-right">
+                            <button type="submit" [ngClass]='estiloBotonNuevo'>
+                                <i class="fas fa-save "></i> Guardar
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </section>
+        </div>
+        <hr>
+
+    </div>
+
+</div>

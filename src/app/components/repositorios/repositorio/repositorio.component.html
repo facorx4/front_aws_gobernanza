@@ -1,0 +1,103 @@
+<div class="page-inner">
+  <div class="page-header">
+  <h4 class="page-title">{{ tituloPage }}</h4>
+
+  <ul class="breadcrumbs">
+      <li class="nav-home">
+          <a href="#">
+              <i class="flaticon-home"></i>
+          </a>
+      </li>
+      <li class="separator">
+          <i class="flaticon-right-arrow"></i>
+      </li>
+      <li class="nav-item">
+          <a href="#">Inicio</a>
+      </li>
+      <li class="separator">
+          <i class="flaticon-right-arrow"></i>
+      </li>
+      <li class="nav-item">
+          <a href="/repositorio/lista">Lista Repositorios</a>
+      </li>
+  </ul>
+</div>
+  <div class="row">
+    <div class="col-md-10">
+      <!-- lista de usuarios -->
+      <section class="card mt-4">
+        <form [formGroup]="repositorioFormulario" (ngSubmit)="guardar()">
+          <div class="card-header">
+            <div class="row d-flex align-items-center">
+              <div class="col-md-5">
+                <div class="form-group" [class.has-error]="nombreNoValid"
+                [class.has-success]="nombreValid">
+                  <label for="nombre">Nombre del repositorio
+                    <span class="required-label">*</span>
+                  </label>
+                  <input type="text" class="form-control" id="nombre" name="nombre"
+                    placeholder="Ingrese el nombre del repositorio" formControlName="nombre">
+                </div>
+                <div class="form-group" [class.has-error]="descripcionNoValid"
+                [class.has-success]="descripcionValid">
+                  <label for="descripcion">Descripcion del repositorio
+                    <span class="required-label">*</span>
+                  </label>
+                  <input type="text" class="form-control" id="descripcion" name="descripcion"
+                    placeholder="Ingrese la descripcion del repositorio" formControlName="descripcion">
+                </div>
+                <div class="form-group" [class.has-error]="rutaNoValid"
+                [class.has-success]="rutaValid">
+                  <label for="descripcion">Ruta del repositorio
+                    <span class="required-label">*</span>
+                  </label>
+                  <input type="text" class="form-control" id="ruta" name="ruta"
+                    placeholder="Ingrese la ruta del repositorio" formControlName="ruta">
+                </div>
+                <div class="form-group " [class.has-error]="repositorioTipoIdNoValid"
+                [class.has-success]="repositorioTipoIdValid">
+                  <label for="userRolID">Tipo de Repositorio
+                    <span class="required-label">*</span>
+                  </label>
+                  <div class="select2-input">
+                    <select class="form-control" id="repositorioTipoId" name="repositorioTipoId" formControlName="repositorioTipoId">
+                      <option value="" disabled>Selecciona una opción</option>
+                      <option [value]="tipoRepo._id" *ngFor="let tipoRepo of listaRepositorioTipoId">{{ tipoRepo.nombre }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group " [class.has-error]="subdominioIdNoValid"
+                [class.has-success]="subdominioIdValid">
+                  <label for="userRolID">Subdominio del Repositorio
+                    <span class="required-label">*</span>
+                  </label>
+                  <div class="select2-input">
+                    <select class="form-control" id="subdominioId" name="subdominioId" formControlName="subdominioId">
+                      <option value="" disabled>Selecciona una opción</option>
+                      <option [value]="subdominio._id" *ngFor="let subdominio of listasubdominioId">{{ subdominio.nombre }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="list-group list-group-messages list-group-flush">
+          </div>
+          <div class="wizard-action">
+            <div class="pull-right">
+              <button type="submit"[ngClass]='botonGuardar'>
+                <i class="fas fa-save "></i> Guardar
+              </button>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </form>
+      </section>
+    </div>
+    <hr>
+
+  </div>
+
+</div>

@@ -1,0 +1,46 @@
+
+
+
+
+<div class="login">
+    <div class="wrapper wrapper-login wrapper-login-full p-0">
+        <div class="login-aside w-50 d-flex flex-column align-items-center justify-content-center text-center bg-secondary-gradient">
+            <h1 class="title fw-bold text-white mb-3">Guandera S.A.S</h1>
+            <p class="subtitle text-white op-7">Aplicacion de Gobierno de datos</p>
+        </div>
+        <div class="login-aside w-50 d-flex align-items-center justify-content-center bg-white">
+            <form [formGroup]="login" (ngSubmit)="validarLogin()">
+                <div class="container container-login container-transparent animated fadeIn">
+                    <h3 class="text-center">Iniciar Sesion</h3>
+                    <div class="login-form">
+
+                        <div class="form-group" [class.has-error]="emailNovalido" [class.has-success]="emailValido" >
+                            <label for="userEmail" class="placeholder"><b>Email / Usuario</b></label>
+                            <input  id="userEmail" name="userEmail" type="text" class="form-control" 
+                                    formControlName="userEmail">
+                        </div>
+
+                        <div class="form-group" [class.has-error]="emailNovalido" [class.has-success]="PassworsValido">
+                            <label for="userPassword" class="placeholder"><b>Contraseña</b></label>
+                            <a href="#" class="link float-right">Olvidaste la contraseña?</a>
+                            <div class="position-relative">
+                                <input  id="userPassword" name="userPassword" type="password" class="form-control" 
+                                        formControlName="userPassword">
+                                <div class="show-password">
+                                    <i class="icon-eye"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-action-d-flex mb-3">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="userRecordar" name="userRecordar" formControlName="userRecordar" >
+                                <label class="custom-control-label m-0" for="userRecordar">Recordar</label>
+                            </div>
+                            <button class="btn btn-secondary col-md-5 float-right mt-3 mt-sm-0 fw-bold" type="submit">Iniciar Sesion</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

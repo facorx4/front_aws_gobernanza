@@ -1,0 +1,153 @@
+<div class="page-inner">
+    <h4 class="page-title">Lista de Modulos</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- encabezado de la lista de modulos -->
+            <div class="d-flex justify-content-between">
+                <div class="d-md-inline-block">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white">
+                                <i class="fa fa-search search-icon"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" name="filterGeneralM" placeholder="Buscar Modulo..."
+                            [(ngModel)]="filterGeneralM">
+
+                    </div>
+                </div>
+                <button [disabled]="!permisoCrear" type="button" [ngClass]='estiloBotonNuevo' routerLink="/modulo/crear">
+                    <i class="fas fa-user-plus"></i>
+                    Nuevo Modulo
+                </button>
+            </div>
+
+            <!-- lista de modulos -->
+
+            <section class="card mt-4">
+
+                <!-- imprimimos la lista de roles para los usuarios -->
+                <div class="list-group list-group-messages list-group-flush" style="overflow-x:auto;">
+
+                    <table id="excel-table" class="table mt-3">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Titulo
+
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-white">
+                                                <i class="fa fa-search search-icon"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" name="filterTitulo"
+                                            placeholder="Filtrar..." [(ngModel)]="filterTituloM">
+
+                                    </div>
+
+
+                                </th>
+                                <th scope="col">Acciones</th>
+
+
+                                <th></th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let item of listaModulosUser | tituloModulo:filterTituloM  |
+                                generalmod:filterGeneralM
+                                |paginate: { itemsPerPage: 5, currentPage: pageActual }; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ item.titulo }}</td>
+
+                                <td>
+                                    <div class="input-group-append">
+                                        <button [ngClass]='estiloBotonoAccion' type="button" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            Acciones
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a [ngClass]="{'disabled': !permisoEditar}" class="dropdown-item"
+                                                [routerLink]="['/modulo/editar', item._id, item.titulo ]"><i
+                                                    class="fas fa-user-edit"></i> Editar</a>
+                                            <a [ngClass]="{'disabled': !permisoConsultar}" class="dropdown-item"
+                                                [routerLink]="['/modulo/detalle', item._id]"><i
+                                                    class="fas fa-user-cog"></i> Detalle
+                                            </a>
+                                            <div role="separator" class="dropdown-divider"></div>
+                                            <a [ngClass]="{'disabled': !permisoEliminar}" class="dropdown-item"
+                                                (click)="eliminar(i, item._id)"><i class="far fa-trash-alt"></i>
+                                                Eliminar</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- alert para mostrar cuando no hay registros -->
+                <div *ngIf="!cargando && listaModulosUser.length <= 0" class="alert alert-warning" role="alert">
+                    <h4 class="alert-heading text-bold">No hay registros!</h4>
+                    <i class="fas fa-exclamation-triangle fa-3x"></i>
+                </div>
+
+                <!-- alert para mostrar cuando esta cargando los registros del API  -->
+                <div *ngIf="cargando" class="alert alert-info" role="alert">
+                    <h4 class="alert-heading text-bold">Cargando!</h4>
+                    <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+                    <p class="mb-0">Por favor espere un momento...</p>
+                </div>
+
+
+            </section>
+
+            <pagination-controls 
+            [ngClass]='colorPaginador' (pageChange)="pageActual = $event"></pagination-controls>
+
+            <div class="input-group-append">
+                <button [ngClass]='estiloBotonoAccion'  type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Exportar
+                </button>
+                <div class="dropdown-menu">
+                    <a  class="dropdown-item" > <button [disabled]="!permisoCrear" type="button" [ngClass]='estiloBotonNuevo' (click)="exportexcel()">
+                        <i class="fas fa-file-download"></i>
+                        Exportar Excel
+                    </button></a>
+                    <a  class="dropdown-item" ><button [disabled]="!permisoCrear" type="button" [ngClass]='estiloBotonNuevo' (click)="exporttxt()">
+                        <i class="fas fa-file-download"></i>
+                        Exportar TXT
+                    </button> </a>                            
+                    
+                </div>
+            </div>
+
+               <div class="form-group">
+                    
+                    <label for="exampleFormControlFile1">Import Data</label>
+                    
+                    <input accept=".txt , .xlsx , csv" type="file" class="form-control-file" id="exampleFormControlFile1" (change)="fileChange($event)">
+                    <br>
+                    <button class="btn btn-black btn-border" type="button" (click)="upload()">Cargar</button>
+                    &nbsp;
+                    <button *ngIf="mostrar"  class="btn btn-black btn-border" type="button" (click)="crearImport()">guardar</button>
+                    
+
+                </div>
+                
+            </div>
+
+          
+          
+        </div>
+
+
+  
+
+</div>
+

@@ -1,0 +1,115 @@
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">{{ tituloPage }}</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Inicio</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/rol/lista">Roles</a>
+            </li>
+        </ul>
+    </div>
+ 
+    <div class="row">
+        <div class="col-md-10">
+            <!-- lista de usuarios -->
+            <section class="card mt-4">
+                <form [formGroup]="rolFormulario" (ngSubmit)="guardarRol()">
+                    <div class="card-header">
+                        <div class="row d-flex align-items-center">
+                           
+                           
+                            <div class="col-md-5">
+                                <div class="form-group" [class.has-error]="nomRolNoValid"
+                                [class.has-success]="nomRolValid">
+                                    <label for="nomRol">Nombre del Rol
+                                        <span class="required-label">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="nomRol" name="nomRol" placeholder="Ingrese el nombre del rol" formControlName="nomRol">
+                                </div>
+
+
+                                <div class="form-group"  [class.has-error]="modulosNoValid"
+                                [class.has-success]="modulosValid">
+                                    <label for="nombreRol">Nombre del Modulo
+                                        <span class="required-label">*</span>
+                                    </label>
+                                    <div class="select2-input">
+                                        <select (change)="selectOption($event.target.options[$event.target.options.selectedIndex].text, $event.target.value)" class="form-control" id="modulos" name="modulos" formControlName="modulos">
+                                            <option value="" disabled>Selecciona una opción</option>
+                                            <option [value]="modul._id" *ngFor="let modul of modulos">{{ modul.titulo }}
+                                            </option>
+                                        </select>
+                                        <br>
+                                        <button type="button" [ngClass]='botonAgregar' (click)="agregar()">
+                                            <i class="fas fa-user-plus"></i>
+                                            Agregar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group list-group-messages list-group-flush">
+                        <section class="card mt-4">
+
+                            <!-- imprimimos la lista de roles para los usuarios -->
+                            <div class="list-group list-group-messages list-group-flush">
+
+                                <table class="table mt-3">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Modulo</th>
+                                            
+                                          
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of listModulos; let i=index ">
+                                            <td>{{ i + 1 }}</td>
+                                            <td>{{ item.modulo }}</td>
+                                            
+                                            
+                                            <td>
+                                                <button type="button" class="btn btn-danger d-none d-sm-inline-block" (click)="quitar(i)">
+                                                    <i class="fas fa-user-plus"></i>
+                                                    Quitar
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </section>
+                    </div>
+                    <div class="wizard-action">
+                        <div class="pull-right">
+                            <button type="submit" [ngClass]='estiloBotonNuevo'>
+                                <i class="fas fa-save "></i> Guardar
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </section>
+        </div>
+        <hr>
+
+    </div>
+
+</div>

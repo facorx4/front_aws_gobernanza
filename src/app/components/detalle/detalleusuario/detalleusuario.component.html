@@ -1,0 +1,120 @@
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">Detalle Usuario {{ nombreUsuario| titlecase}} {{ apellidosUsuario| titlecase}}</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Inicio</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/usuario/lista">Usuarios</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="wizard-container wizard-round col-md-9">
+ 
+           
+
+                <div class="wizard-body">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <!-- ingresar nombres -->
+                            <div class="form-group" >
+                                <ul class="list-group">
+                                    <li [ngClass]='estiloDetalle' aria-current="true">Nombres</li>
+                                    <li *ngIf="nombreUsuario != '' "class="list-group-item">{{nombreUsuario}}</li>
+                                    <li *ngIf="nombreUsuario == '' " class="list-group-item">No registra datos</li>
+                                    <li *ngIf="nombreUsuario == 'null' " class="list-group-item">No registra datos</li>
+                                                                   
+                                  </ul>
+                            </div>
+                            <!-- nombre del usuario de red -->
+                            <div class="form-group">
+                                <ul class="list-group">
+                                    <li [ngClass]='estiloDetalle' aria-current="true">Username</li>
+                                    <li  *ngIf="emailUsuario != '' " class="list-group-item">{{emailUsuario}}</li>
+                                    <li *ngIf="emailUsuario == '' " class="list-group-item">No registra datos</li>
+                                    <li *ngIf="emailUsuario == 'null' " class="list-group-item">No registra datos</li>
+                                                                   
+                                  </ul>
+
+                            </div>
+                         
+
+                            <div class="form-group">
+                                <ul class="list-group">
+                                    <li [ngClass]='estiloDetalle' aria-current="true">Sobre mi</li>
+                                    <li  *ngIf="sobremiUsuario != '' " class="list-group-item">{{sobremiUsuario}}</li>
+                                    <li *ngIf="sobremiUsuario == '' " class="list-group-item">No registra datos</li>
+                                    <li *ngIf="sobremiUsuario == 'null' " class="list-group-item">No registra datos</li>
+                                                                   
+                                  </ul>
+
+                            </div>
+
+
+                            
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <!-- ingresar apellido -->
+                            <div class="form-group">
+                                <ul class="list-group">
+                                    <li [ngClass]='estiloDetalle' aria-current="true">Apellidos</li>
+                                    <li *ngIf="apellidosUsuario != '' " class="list-group-item">{{apellidosUsuario}}</li>
+                                    <li *ngIf="apellidosUsuario == '' " class="list-group-item">No registra datos</li>
+                                    <li *ngIf="apellidosUsuario == 'null' " class="list-group-item">No registra datos</li>
+                                                                   
+                                  </ul>
+                            </div>
+
+                            <!-- ingresar email -->
+                            <div class="form-group">
+                                <ul class="list-group">
+                                    <li [ngClass]='estiloDetalle' aria-current="true">Contacto</li>
+                                    <li *ngIf="contactoUsuario != '' "class="list-group-item">{{contactoUsuario}}</li>
+                                    <li *ngIf="contactoUsuario == '' " class="list-group-item">No registra datos</li>
+                                    <li *ngIf="contactoUsuario == 'null' " class="list-group-item">No registra datos</li>
+                                                                   
+                                  </ul>
+                            </div>
+
+                            
+
+                            <!-- subir avatar -->
+                            <div class="form-group">
+                                <label>
+                                    Avatar :
+                                </label>
+                                <div class="input-file input-file-image">
+                                    <input type="hidden" class="form-control" id="confirmpassword" name="confirmpassword" formControlName="userAvatar">
+                                    <img src="{{ avatarUsuario }}" class="img-upload-preview img-circle" width="100" height="100"  alt="preview">
+       
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+           
+        </div>
+    </div>
+</div>
+    

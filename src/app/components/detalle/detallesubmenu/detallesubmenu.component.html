@@ -1,0 +1,82 @@
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">Detalle Submenu {{ nombreSubmenu| titlecase}} </h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Inicio</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/submenu/lista">Submenus</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="wizard-container wizard-round col-md-9">
+ 
+           
+
+                <div class="wizard-body">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <!-- ingresar nombres -->
+                            <div class="form-group" >
+                                <ul class="list-group">
+                                    <li [ngClass]='estiloDetalle' aria-current="true">Nombre</li>
+                                    <li  *ngIf="nombreSubmenu != ''"  class="list-group-item">{{nombreSubmenu}}</li>
+                                    <li *ngIf="nombreSubmenu == '' " class="list-group-item">No registra datos</li>
+                                    <li *ngIf="nombreSubmenu == 'null' " class="list-group-item">No registra datos</li>
+                                                                   
+                                  </ul>
+                            </div>
+                            
+                         
+
+                            
+
+
+                            
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <!-- ingresar apellido -->
+                            <div class="form-group">
+                                <ul class="list-group">
+                                    <li [ngClass]='estiloDetalle' aria-current="true">Ruta</li>
+                                    <li  *ngIf="rutaSubmenu != '' " class="list-group-item">{{rutaSubmenu}}</li>
+                                    <li *ngIf="rutaSubmenu == '' " class="list-group-item">No registra datos</li>
+                                    <li *ngIf="rutaSubmenu == 'null' " class="list-group-item">No registra datos</li>
+                                                                   
+                                  </ul>
+                            </div>
+
+                           
+
+                            
+
+                            
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+           
+        </div>
+    </div>
+</div>
+    

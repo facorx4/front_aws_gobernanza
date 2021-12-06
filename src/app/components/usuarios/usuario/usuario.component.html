@@ -1,0 +1,220 @@
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">{{tituloPage}}</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Inicio</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/usuario/lista">Usuarios</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="wizard-container wizard-round col-md-9">
+
+            <form [formGroup]="nuevoUsuario" (ngSubmit)="crearUsuario()">
+
+                <div class="wizard-body">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <!-- ingresar nombres -->
+                            <div class="form-group" [class.has-error]="userNombresNoValid" [class.has-success]="userNombresValid">
+                                <label for="name">Nombres
+                                    <span class="required-label">*</span>
+                                </label>
+                                <input type="text" class="form-control" placeholder="Escribe tu nombre" id="userNombres" name="userNombres" formControlName="userNombres">
+                            </div>
+                            <!-- ingresar apellidos -->
+                            <div class="form-group">
+                                <label for="name">Apellidos
+                                    <span class="required-label">*</span>
+                                </label>
+                                <input type="text" class="form-control" placeholder="Escribe tus apellidos" id="userApellidos" name="userApellidos" formControlName="userApellidos">
+                            </div>
+
+                            <!-- ingresar contraseña  -->
+                            <div *ngIf="!this.idUsuario" class="form-group" [class.has-error]="userPasswordNoValid" [class.has-success]="userPasswordValid">
+                                <label for="userPassword">Contraseña
+                                    <span class="required-label">*</span>
+                                </label>
+                                <input type="password" class="form-control" placeholder="Escribe una contraseña segura" id="userPassword" name="userPassword" formControlName="userPassword">
+                            </div>
+                            <!-- seleccionar rol -->
+                            <div class="form-group " [class.has-error]="userRolIDNoValid" [class.has-success]="userRolIDValid">
+                                <label for="userRolID">Seleccionar Rol de Usuario
+                                    <span class="required-label">*</span>
+                                </label>
+                                <div class="select2-input">
+                                    <select class="form-control" id="userRolID" name="userRolID" formControlName="userRolID">
+                                        <option value="" disabled>Selecciona una opción</option>
+                                        <option [value]="rol._id" *ngFor="let rol of listaRolesUser">{{ rol.nomRol }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- seleccionar estilo plantilla -->
+                            <div class="form-group " [class.has-error]="estiloNoValid" [class.has-success]="estiloValid">
+                                <label for="estilo">Estilo Plantilla
+                                    <span class="required-label">*</span>
+                                </label>
+                                <div class="select2-input">
+                                    <select class="form-control" id="estilo" name="estilo" formControlName="estilo">
+                                        <option value="" disabled>Selecciona una opción</option>
+                                        <option [value]="estilos._id" *ngFor="let estilos of listaEstilos">{{ estilos.nombre }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- selecionar estado -->
+                            <div class="form-group">
+                                <label>Estado
+                                    <span class="required-label">*</span>
+                                </label>
+                                <div class="col-lg-4 col-md-9 col-sm-8 d-flex align-items-center">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" value="activo" checked id="activo" name="userEstado" formControlName="userEstado">
+                                        <label class="custom-control-label" for="activo">Activo</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="inactivo" name="userEstado" value="inactivo" formControlName="userEstado">
+                                        <label class="custom-control-label" for="inactivo">Inactivo</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <!-- nombre del usuario de red -->
+                            <div class="form-group">
+                                <label for="userSys">Username
+                                    <span class="required-label">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="username-addon">@</span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Ingrese username" id="userSys" name="userSys" formControlName="userSys">
+                                </div>
+                            </div>
+                            <!-- ingresar email -->
+                            <div class="form-group" [class.has-error]="userEmailNoValid" [class.has-success]="userEmailValid">
+                                <label for="email">Correo Electronico
+                                    <span class="required-label">*</span>
+                                </label>
+                                <input type="email" class="form-control" placeholder="Escribe tu correo electrónico" id="userEmail" name="userEmail" formControlName="userEmail">
+
+                                <small id="emailHelp" class="form-text text-muted" style="display: none;">
+                                    We'll never share your email with anyone else.
+                                </small>
+                            </div>
+
+                            <!-- confirmar Contraseña -->
+                            <div *ngIf="!this.idUsuario" class="form-group" [class.has-error]="userConfirPasswordNoValid" [class.has-success]="userConfirPasswordValid">
+                                <label for="confirmpassword">Confirmar Contraseña
+                                    <span class="required-label">*</span>
+                                </label>
+                                <input type="password" class="form-control" placeholder="Escribe nuevamente la contraseña" id="confirmpassword" name="confirmpassword" formControlName="userConfirPassword">
+                            </div>
+
+                            <!-- subir avatar -->
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-cloud-upload-alt"></i> Subir Avatar :
+                                </label>
+                                <div class="input-file input-file-image">
+                                    <input type="hidden" class="form-control" id="userAvatar" name="userAvatar" formControlName="userAvatar">
+                                    <img class="img-upload-preview img-circle" width="100" height="100" src="{{nuevoUsuario.value.userAvatar}}" alt="preview">
+                                    <label style="cursor: pointer; text-decoration: underline;" for="file">Seleccione una foto de usuario...</label>
+                                        <input type="file"
+                                               id="file"
+                                               (change)="handleFileInput($event.target.files)">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Permisos -->
+                <div class="form-group" [class.has-error]="permisosNoValid" [class.has-success]="permisosValid">
+                    <label for="email">Permisos
+                        <span class="required-label">*</span>
+                </label>
+                </div>
+                <div formArrayName="permisos">
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                        <input type="checkbox" class="form-control" id="permisoCrear" name="permisoCrear"
+                            formControlName="0">Crear 
+                    </label>
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                        <input type="checkbox" class="form-control" id="permisoModificar" name="permisoModificar"
+                            formControlName="1">Modificar
+                    </label>
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                        <input type="checkbox" class="form-control" id="permisoConsultar" name="permisoConsultar"
+                            formControlName="2">Consultar
+                    </label>
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                        <input type="checkbox" class="form-control" id="permisoEliminar" name="permisoEliminar"
+                            formControlName="3">Eliminar
+                    </label>
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                        <input type="checkbox" class="form-control" id="permisoImprimir" name="permisoImprimir"
+                            formControlName="4">Imprimir
+                    </label>
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                        <input type="checkbox" class="form-control" id="permisoExportar" name="permisoExportar"
+                            formControlName="5">Exportar
+                    </label>
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                        <input type="checkbox" class="form-control" id="permisoImportar" name="permisoImportar"
+                            formControlName="6">Importar
+                    </label>
+                    </div>
+                </div>
+
+                <div class="wizard-action">
+                    <div class="pull-right">
+                        <button type="submit" [ngClass]='estiloBotonNuevo'>
+                            <i class="fas fa-save "></i> Guardar
+                        </button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>

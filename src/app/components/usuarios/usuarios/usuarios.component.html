@@ -1,0 +1,155 @@
+<div class="page-inner">
+    <h4 class="page-title">Lista de Usuarios</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- encabezado de la lista de usuarios -->
+            <div class="d-flex justify-content-between">
+                <div class="d-md-inline-block">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white">
+                                <i class="fa fa-search search-icon"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" name="filterGeneral" placeholder="Buscar Usuario..."
+                            [(ngModel)]="filterGeneral">
+                    </div>
+                </div>
+                <button [ngClass]='estiloBotonNuevo' routerLink="/usuario/crear" [disabled]="!permisoCrear">
+                    <i class="fas fa-user-plus"></i> Nuevo Usuario
+                </button>
+            </div>
+            <!-- lista de usuarios -->
+            <section class="card mt-4">
+                <div class="list-group list-group-messages list-group-flush">
+
+
+                    <h4 class="list-group-item-title">
+                        <a> &nbsp; &nbsp;Total Usuarios ({{totalUsuarios}}) </a>
+                    </h4>
+                    <div class="list-group-item unread" *ngFor="let usuario of usuarios |
+                        generalusuario: filterGeneral|
+                        paginate: { itemsPerPage: 5, currentPage: pageActual }; let i = index">
+
+                        <div class="list-group-item-figure">
+                            <span class="rating rating-sm mr-3">
+                                <input type="checkbox" id="star2" value="1" checked>
+                                <label for="star2">
+                                    <span class="fa fa-star"></span>
+                                </label>
+                            </span>
+                            <a [routerLink]="['/usuario/detalle', usuario._id]" class="user-avatar"
+                                *ngIf="!this.usuario.userAvatar">
+                                <div class="avatar avatar-offline">
+                                    <img src="https://via.placeholder.com/50" alt="..."
+                                        class="avatar-img rounded-circle">
+                                </div>
+                            </a>
+                            <a [routerLink]="['/usuario/detalle', usuario._id]" class="user-avatar"
+                                *ngIf="this.usuario.userAvatar">
+                                <div class="avatar avatar-offline">
+                                    <img src="{{usuario.userAvatar}}" alt="..." class="avatar-img rounded-circle">
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="list-group-item-body pl-3 pl-md-4">
+                            <div class="row">
+                                <div class="col-12 col-lg-10">
+                                    <h4 class="list-group-item-title">
+                                        <a [routerLink]="['/usuario/detalle', usuario._id]">{{usuario.userNombres}}
+                                            {{usuario.userApellidos}}</a>
+                                    </h4>
+                                    <p class="list-group-item-text text-truncate"> {{usuario.userEmail}} </p>
+                                </div>
+                                <div class="col-12 col-lg-2 text-lg-right">
+                                    <p *ngIf="usuario.userLastDate != 'null' " class="list-group-item-text">
+                                        {{usuario.userDateAdd | date :'mediumDate'}} </p>
+                                    <p *ngIf="usuario.userLastDate == 'null'" class="list-group-item-text"> No registra
+                                        fecha </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="list-group-item-figure">
+                            <div class="dropdown">
+                                <button class="btn-dropdown" data-toggle="dropdown">
+                                    <i class="icon-options-vertical"></i>
+                                </button>
+                                <div class="dropdown-arrow"></div>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a [ngClass]="{'disabled': !permisoEditar}" class="dropdown-item" [routerLink]="[ '/usuario/editar', usuario._id ]"><i
+                                            class="fas fa-user-edit"></i> Editar</a>
+                                    <a [ngClass]="{'disabled': !permisoConsultar}" class="dropdown-item" [routerLink]="['/usuario/detalle',  usuario._id]"><i
+                                            class="fas fa-user-cog"></i> Detalle
+                                    </a>
+                                    
+                                    <a href="/perfil" class="dropdown-item"><i class="fas fa-key"></i> Cambiar de
+                                        Contraseña</a>
+                                    <a [ngClass]="{'disabled': !permisoEliminar}" class="dropdown-item" (click)="eliminarUser(usuario._id, i)"><i
+                                            class="fas fa-trash-alt"></i> Eliminar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- alert para mostrar cuando no hay registros -->
+                    <div *ngIf="!cargando && usuarios.length <= 0" class="alert alert-warning" role="alert">
+                        <h4 class="alert-heading text-bold">No hay registros!</h4>
+                        <i class="fas fa-exclamation-triangle fa-3x"></i>
+                    </div>
+
+                    <!-- alert para mostrar cuando esta cargando los registros del API  -->
+                    <div *ngIf="cargando" class="alert alert-info" role="alert">
+                        <h4 class="alert-heading text-bold">Cargando!</h4>
+                        <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+                        <p class="mb-0">Por favor espere un momento...</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <pagination-controls [ngClass]='colorPaginador' (pageChange)="pageActual = $event"></pagination-controls>
+
+            <div class="input-group-append">
+                <button [ngClass]='estiloBotonoAccion'  type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Exportar
+                </button>
+                <div class="dropdown-menu">
+                    <a  class="dropdown-item" > <button [disabled]="!permisoCrear" type="button" [ngClass]='estiloBotonNuevo' (click)="exportexcel()">
+                        <i class="fas fa-file-download"></i>
+                        Exportar Excel
+                    </button></a>
+                    <a  class="dropdown-item" ><button [disabled]="!permisoCrear" type="button" [ngClass]='estiloBotonNuevo' (click)="exporttxt()">
+                        <i class="fas fa-file-download"></i>
+                        Exportar TXT
+                    </button> </a>                            
+                    
+                </div>
+            </div>
+
+               <div class="form-group">
+                    
+                    <label for="exampleFormControlFile1">Import Data</label>
+                    
+                    <input accept=".txt , .xlsx , csv" type="file" class="form-control-file" id="exampleFormControlFile1" (change)="fileChange($event)">
+                    <br>
+                    <button class="btn btn-black btn-border" type="button" (click)="upload()">Cargar</button>
+                    &nbsp;
+                    <button *ngIf="mostrar"  class="btn btn-black btn-border" type="button" (click)="crearImport()">guardar</button>
+                    
+
+                </div>
+                
+            </div>
+
+          
+          
+        </div>
+
+
+  
+
+</div>
+

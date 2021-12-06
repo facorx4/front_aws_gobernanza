@@ -1,0 +1,260 @@
+<div [ngClass]="estiloBanner">
+    <div class="page-inner py-5">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+            <div>
+                <h2 *ngFor="let compania of listaCompan" class="text-white pb-2 fw-bold"> BIENVENIDO
+                    {{compania.nombreCompania | uppercase}}</h2>
+                <h5 class="text-white op-7 mb-2">
+                    A Data Governance</h5>
+
+                <h5 class="text-white op-7 mb-2">
+                    Aborde sus desafíos de gobierno de datos con una solución de localización de datos simple y fácil de
+                    usar.</h5>
+            </div>
+            <div class="ml-md-auto py-2 py-md-0">
+
+                <a href="#" class="btn-round"  [ngClass] = 'estiloBoton'>Contáctenos</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--buscador-->
+<div class="page-inner mt--5">
+    <div class="row mt--2">
+        <div class="col-md-6">
+            <div class="card full-height">
+                <div class="card-body">
+                    <div class="card-title">Buscar Terminos</div>
+                    <div class="card-category">Realize una busqueda por termino en los diferentes modulos.</div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="" class="btn btn-search pr-1" (click)="buscar( txtTermino.value)">
+                                <i class="fa fa-search search-icon"></i>
+                            </button>
+                        </div>
+                        <input type="text" placeholder="Buscar..." class="form-control"
+                            (keyup)="buscar( txtTermino.value)" #txtTermino>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card full-height">
+                <div class="card-body">
+                    <div class="card-title">Estadísticas generales</div>
+                    <div class="card-category">Información diaria sobre estadísticas en el sistema.</div>
+                    <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+                        <div class="px-2 pb-2 pb-md-0 text-center">
+                            <div>
+                                <div>
+                                    <div style="display: block">
+                                        <canvas width="120" height="120" baseChart [data]="doughnutChartData"
+                                            [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+                                        </canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <h6 class="fw-bold mt-3 mb-0">Total usuarios</h6>
+                            <h2>{{totalUsuarios}}</h2>
+                        </div>
+                        <div class="px-2 pb-2 pb-md-0 text-center">
+                            <div>
+                                <div>
+                                    <div style="display: block">
+                                        <canvas width="120" height="120" baseChart [data]="doughnutChartData1"
+                                            [labels]="doughnutChartLabels1" [chartType]="doughnutChartType1">
+                                        </canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <h6 class="fw-bold mt-3 mb-0">Total Areas</h6>
+                            <h2>{{totalAreas}}</h2>
+                        </div>
+                        <div class="px-2 pb-2 pb-md-0 text-center">
+                            <div>
+                                <div>
+                                    <div style="display: block">
+                                        <canvas width="120" height="120" baseChart [data]="doughnutChartData2"
+                                            [labels]="doughnutChartLabels2" [chartType]="doughnutChartType2">
+                                        </canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <h6 class="fw-bold mt-3 mb-0">Total Dominios</h6>
+                            <h2>{{totalDom}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card" >
+                <div class="card-header">
+                    <div class="card-head-row">
+                        <div *ngIf="tituloPage == '0'" class="card-title">Resultado Busqueda</div>
+                        <div *ngIf="tituloPage != '0'" class="card-title">Resultado Busqueda {{tituloPage}}</div>
+                        <div class="card-tools">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div *ngIf="   tituloPage != '0' 
+                     && conceptosnegocios.length === 0  " 
+                    class="alert alert-danger " role="alert">
+                        No se encontro ningún termino con esta busqueda
+                    </div>
+                    <div *ngIf=" tituloPage == '0' " class="alert alert-danger" role="alert">
+                        No sé ha realizado ninguna búsqueda
+                    </div>
+                    <div class="row">
+                        <!--Concepto negocio nombre-->
+                        <div class="col-md-12">
+                            <div *ngIf="conceptosnegocios.length > 0" class="col-sm-12" style="overflow-x:auto;">
+                                <h3>Concepto Negocio</h3>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <table class="table mt-3">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let conceptosnegocios of conceptosnegocios,let i=index">
+                                                    <td>{{ i + 1}}</td>
+                                                    <td>{{conceptosnegocios.nombre}}</td>
+                                                 
+
+                                                    <td>
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item"
+                                                                    [routerLink]="['/conceptonegocio/detalle', conceptosnegocios._id]"><i
+                                                                        class="fas fa-user-cog"></i> Detalle</a>
+                                                                        <div role="separator" class="dropdown-divider"></div>
+                                                                <a class="dropdown-item"
+                                                                [routerLink]="['/busqueda/conceptoentidad/detalle', conceptosnegocios._id]"  ><i
+                                                                        class=" fab fa-codepen"></i> Entidad Dato
+                                                                </a>
+                                                                <div role="separator" class="dropdown-divider"></div>
+                                                                <a class="dropdown-item"
+                                                                [routerLink]="['/busqueda/conceptotrazibilidad/detalle', conceptosnegocios._id]" ><i
+                                                                        class="fas fa-clipboard-list"></i>
+                                                                    Trazabilidad</a>
+                                                                    <div role="separator" class="dropdown-divider"></div>
+                                                                    <a class="dropdown-item"
+                                                                    [routerLink]="['/busqueda/conceptoregla/detalle', conceptosnegocios._id]" ><i
+                                                                        class=" fas fa-ruler-combined"></i>
+                                                                    Regla de Calidad</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                             <!--TERMINACION-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--tickets-->
+        <div class="col-md-4">
+            <div class="card full-height">
+                <div class="card-header">
+                    <div class="card-head-row">
+                        <div class="card-title">Tickets de soporte</div>
+                    </div>
+                </div>
+
+                <div class="card-header">
+                    <div class="card-head-row">
+
+                        <button class="btn-round" [ngClass] = 'estiloBoton' routerLink="/ticket"><i
+                                class="fas fa-user-plus"></i>Nuevo</button>
+                        <div class="card-tools">
+                            <ul class="nav nav-pills nav-secondary nav-pills-no-bd nav-sm" id="pills-tab"
+                                role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-today" data-toggle="pill" role="tab"
+                                        aria-selected="true" >Abierto</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pills-week" data-toggle="pill" href="#pills-week"
+                                        role="tab" aria-selected="false">Pendiente</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-month" data-toggle="pill" href="#pills-month"
+                                        role="tab" aria-selected="false" >Cerrado</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="d-flex"
+                        *ngFor="let item of listaTick  |paginate: { itemsPerPage: 4, currentPage: pageActual }; let i = index">
+                        <div class="avatar avatar-online">
+                            <a class="user-avatar" *ngIf="!this.item.userAvatar">
+                                <div class="avatar avatar-offline">
+                                    <img src="https://via.placeholder.com/50" alt="..."
+                                        class="avatar-img rounded-circle">
+                                </div>
+                            </a>
+                            <a class="user-avatar" *ngIf="this.item.userAvatar">
+                                <div class="avatar avatar-offline">
+                                    <img src="{{item.userAvatar}}" alt="..." class="avatar-img rounded-circle">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="flex-1 ml-3 pt-1">
+                            <div class="separator-dashed"></div>
+                            <h6 class="text-uppercase fw-bold mb-1">{{item.userNombres}} {{item.userApellidos}}
+                                <span *ngIf="this.item.estado == 'abierto'"
+                                    class="text-success pl-3">{{item.estado}}</span>
+                                <span *ngIf="this.item.estado == 'cerrado'"
+                                    class="text-muted  pl-3">{{item.estado}}</span>
+                                <span *ngIf="this.item.estado == 'pendiente'"
+                                    class="text-warning pl-3">{{item.estado}}</span>
+                            </h6>
+                            <span class="text-muted">{{item.titulo |  titlecase }} </span>
+                        </div>
+                        <div class="float-right pt-1">
+                            <small class="text-muted">{{item.userLastDate
+                            }}....{{item.userHora}}</small>
+                        </div>
+
+                        <div *ngIf="!cargando && item.length <= 0" class="alert alert-warning" role="alert">
+                            <h4 class="alert-heading text-bold">No hay registros!</h4>
+                            <i class="fas fa-exclamation-triangle fa-3x"></i>
+                        </div>
+
+                        <div *ngIf="cargando" class="alert alert-info" role="alert">
+                            <h4 class="alert-heading text-bold">Cargando!</h4>
+                            <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+                            <p class="mb-0">Por favor espere un momento...</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <pagination-controls [ngClass]='colorPaginador' (pageChange)="pageActual = $event"></pagination-controls>
+                        </div>
+                    </div>
+                </div>

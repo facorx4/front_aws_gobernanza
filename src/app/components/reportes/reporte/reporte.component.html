@@ -1,0 +1,277 @@
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">{{tituloPage}}</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Inicio</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/reporte/lista">Reportes</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="wizard-container wizard-round col-md-9">
+
+            <form [formGroup]="reporteFormulario" (ngSubmit)="guardarReporte()">
+
+                <div class="wizard-body">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <!-- ingresar identificador -->
+                            <div class="form-group" [class.has-error]="identificadorNoValid" [class.has-success]="identificadorValid">
+                                <label for="name">Identificador
+                                    <span class="required-label">*</span>
+                                </label>
+                                <input type="text" class="form-control" placeholder="Ingrese identificador" id="identificador" name="identificador" formControlName="identificador">
+                            </div>
+                            <!-- nombre del reporte -->
+                            <div class="form-group" [class.has-error]="nombreNoValid" [class.has-success]="nombreValid">
+                                <label for="name">Nombre
+                                    <span class="required-label">*</span>
+                                </label>
+                                <input type="text" class="form-control" placeholder="Ingrese nombre" id="nombre" name="nombre" formControlName="nombre">
+                            </div>
+                            <!-- ingresar propietario  -->
+                            <div class="form-group" [class.has-error]="propietarioNoValid" [class.has-success]="propietarioValid">
+                                <label for="name">Propietario
+                                    <span class="required-label">*</span>
+                                </label>
+                                <input type="text" class="form-control" placeholder="Ingrese propietario" id="propietario" name="propietario" formControlName="propietario">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="titulo">Descripción
+                                   
+                                </label>
+
+                                <textarea class="form-control" rows="7" id="descripcion" name="descripcion" formControlName="descripcion">
+                                </textarea>
+
+                            </div>
+
+
+
+                            <div class="form-group" [class.has-error]="DominiosCompaniaNoValid" [class.has-success]="DominiosCompaniaValid">
+                                <label for="nombreRol">Dominio Asociado
+                                    <span class="required-label">*</span>
+                                </label>
+                                <div class="select2-input">
+                                    <select (change)="selectOptionDominio($event.target.options[$event.target.options.selectedIndex].text, $event.target.value )" class="form-control" id="DominiosCompania" name="DominiosCompania" formControlName="DominiosCompania">
+                                        <option value="" disabled>Selecciona una opción</option>
+                                        <option [value]="DominiosCompan._id"
+                                            *ngFor="let DominiosCompan of listaCompaniaDominio">{{
+                                                DominiosCompan.nombreDom }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+
+                        <div class="col-md-6">
+
+
+                            <div class="form-group" [class.has-error]="regulatorioNoValid" [class.has-success]="regulatorioValid">
+                                <label>¿Es Regulatorio?
+                                    <span class="required-label">*</span>
+                                </label>
+                                <div class="col-lg-4 col-md-9 col-sm-8 d-flex align-items-center">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" value="si" checked id="si" name="regulatorio" formControlName="regulatorio">
+                                        <label class="custom-control-label" for="si">SI</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="no" name="regulatorio" value="no" formControlName="regulatorio">
+                                        <label class="custom-control-label" for="no">NO</label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group" [class.has-error]="periodicidadNoValid" [class.has-success]="periodicidadValid">
+                                <label for="nombreRol">Periodicidad
+                                    <span class="required-label">*</span>
+                                </label>
+                                <div class="select2-input">
+                                    <select (change)="selectOptionPeriodicidad($event.target.options[$event.target.options.selectedIndex].text, $event.target.value )" class="form-control" id="periodicidad" name="periodicidad" formControlName="periodicidad">
+                                        <option value="" disabled>Selecciona una opción</option>
+                                        <option [value]="period._id"
+                                            *ngFor="let period of listaPeriodicidad">{{
+                                                period .nombre}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            <!-- ingresar dimenciones -->
+                            <div class="form-group" [class.has-error]="dimencionesNoValid" [class.has-success]="dimencionesValid">
+                                <label for="name">Dimenciones
+                                    <span class="required-label">*</span>
+                                </label>
+                                <input type="text" class="form-control" placeholder="Listar dimenciones" id="dimenciones" name="dimenciones" formControlName="dimenciones">
+                            </div>
+
+                            <div class="form-group" [class.has-error]="indicadoresNoValid" [class.has-success]="indicadoresValid">
+                                <label for="name">Indicadores
+                                    <span class="required-label">*</span>
+                                </label>
+                                <input type="text" class="form-control" placeholder="Listar los indicadores" id="indicadores" name="indicadores" formControlName="indicadores">
+                            </div>
+
+
+
+
+                            <div class="form-group" [class.has-error]="cuadroNoValid" [class.has-success]="cuadroValid">
+                                <label>¿Se presenta en algún cuadro de mando ?
+                                    <span class="required-label">*</span>
+                                </label>
+                                <div class="col-lg-4 col-md-9 col-sm-8 d-flex align-items-center">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" value="si" checked id="cuadrosi" name="cuadro" formControlName="cuadro">
+                                        <label class="custom-control-label" for="cuadrosi">SI</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="cuadrono" name="cuadro" value="no" formControlName="cuadro">
+                                        <label class="custom-control-label" for="cuadrono">NO</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" value="validar" checked id="validar" name="cuadro" formControlName="cuadro">
+                                        <label class="custom-control-label" for="validar">Validar</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Nombre cuadro mando
+                                 
+                                </label>
+                                <input type="text" class="form-control" placeholder="Escribir nombre cuadro mando" id="nombreCuadro" name="nombreCuadro" formControlName="nombreCuadro">
+                            </div>
+
+
+
+
+
+                            <div class="form-group" [class.has-error]="validadoNoValid" [class.has-success]="validadoValid">
+                                <label>¿Validado por el propietario del reporte?
+                                    <span class="required-label">*</span>
+                                </label>
+                                <div class="col-lg-4 col-md-9 col-sm-8 d-flex align-items-center">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" value="si" checked id="propietariosi" name="validado" formControlName="validado">
+                                        <label class="custom-control-label" for="propietariosi">SI</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="propietariono" name="validado" value="no" formControlName="validado">
+                                        <label class="custom-control-label" for="propietariono">NO</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" value="pendiente" checked id="pendiente" name="validado" formControlName="validado">
+                                        <label class="custom-control-label" for="pendiente">Pendiente</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <!-- Input para el area en el que se visualiza -->
+                    <div class="form-group">
+                        <label for="reportes">Áreas que consumen el reporte
+        <span class="required-label">*</span>
+      </label>
+                        <div class="select2-input">
+                            <select (change)="selectAreas($event.target.options[$event.target.options.selectedIndex].text, $event.target.value)" class="form-control" id="areas" name="areas" formControlName="areas">
+                            <option value="" disabled>Selecciona una opción</option>
+                            <option [value]="item._id" *ngFor="let item of listaAreas">{{ item.nombre }}
+          </option>
+        </select>
+                            <br>
+                            <button type="button" [ngClass]='botonAgregar' (click)="agregarArea()">
+          <i class="fas fa-user-plus"></i>
+          Agregar
+        </button>
+                        </div>
+                    </div>
+                    <div class="list-group list-group-messages list-group-flush">
+                        <section class="card mt-4">
+
+                            <!-- imprimimos la lista de roles para los usuarios -->
+                            <div class="list-group list-group-messages list-group-flush">
+
+                                <table class="table mt-3">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Área</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of selectedAreas; let i=index ">
+                                            <td>{{ i + 1 }}</td>
+                                            <td>{{ item.nombre }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger " (click)="quitarArea(i)">
+                    <i class="fas fa-user-plus"></i>
+                    Quitar
+                  </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </section>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+                <div class="wizard-action">
+                    <div class="pull-right">
+                        <button type="submit" [ngClass]='botonGuardar'>
+                            <i class="fas fa-save "></i> Guardar
+                        </button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>

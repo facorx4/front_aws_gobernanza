@@ -1,0 +1,135 @@
+<div class="page-inner">
+    <h4 class="page-title">Lista de Concepto Negocio</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- encabezado de la lista de modulos -->
+            <div class="d-flex justify-content-between">
+                <div class="d-md-inline-block">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white">
+                                <i class="fa fa-search search-icon"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" name="generalPipe"
+                            placeholder="Buscar concepto negocio..." [(ngModel)]="generalPipe">
+
+
+                    </div>
+                </div>
+                <button [disabled]="!permisoCrear" type="button" [ngClass]='estiloBotonNuevo' routerLink="/conceptonegocio/crear">
+                    <i class="fas fa-user-plus"></i>
+                    Nuevo Concepto Negocio
+                </button>
+            </div>
+
+            <!-- lista de concepto negocio -->
+
+            <section class="card mt-4">
+
+
+                <div class="list-group list-group-messages list-group-flush" style="overflow-x:auto;">
+
+                    <table class="table mt-3">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nombre
+
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-white">
+                                                <i class="fa fa-search search-icon"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" name="nombrePipe"
+                                            placeholder="Filtrar..." [(ngModel)]="nombrePipe">
+
+                                    </div>
+                                </th>
+
+
+                                <th scope="col">Uso
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-white">
+                                                <i class="fa fa-search search-icon"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" name="usoPipe" placeholder="Filtrar..."
+                                            [(ngModel)]="usoPipe">
+
+                                    </div>
+
+                                </th>
+
+
+                                <th></th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+                            <tr
+                                *ngFor="let item of listaConceptonegocioUser | nombrePipe:nombrePipe  | definicion:definicionPipe 
+                                | uso:usoPipe | calculo:calculoPipe 
+                                | general:generalPipe | paginate: { itemsPerPage: 5, currentPage: pageActual }; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ item.nombre }}</td>
+                                <td>{{ item.concepto.nombre}}</td>
+
+
+
+                                <td>
+                                    <div class="input-group-append">
+                                        <button [ngClass]='estiloBotonoAccion' type="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Acciones
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a [ngClass]="{'disabled': !permisoEditar}" class="dropdown-item"
+                                                [routerLink]="['/conceptonegocio/editar', item._id]"><i
+                                                    class="fas fa-user-edit"></i> Editar</a>
+                                            <a [ngClass]="{'disabled': !permisoEditar}" class="dropdown-item"
+                                                [routerLink]="['/conceptonegocio/detalle', item._id]"><i
+                                                    class="fas fa-user-cog"></i> Detalle
+                                            </a>
+                                            <div role="separator" class="dropdown-divider"></div>
+                                            <a [ngClass]="{'disabled': !permisoConsultar}" class="dropdown-item" (click)="eliminar(i, item._id)"><i
+                                                    class="far fa-trash-alt"></i>
+                                                Eliminar</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--  alert para mostrar cuando no hay registros -->
+                <div *ngIf="!cargando && listaConceptonegocioUser.length <= 0" class="alert alert-warning" role="alert">
+                    <h4 class="alert-heading text-bold">No hay registros!</h4>
+                    <i class="fas fa-exclamation-triangle fa-3x"></i>
+                </div>
+
+                <!-- alert para mostrar cuando esta cargando los registros del API  -->
+                <div *ngIf="cargando" class="alert alert-info" role="alert">
+                    <h4 class="alert-heading text-bold">Cargando!</h4>
+                    <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+                    <p class="mb-0">Por favor espere un momento...</p>
+                </div>
+
+
+            </section>
+
+            <pagination-controls [ngClass]='colorPaginador' (pageChange)="pageActual = $event"></pagination-controls>
+
+
+
+        </div>
+
+
+    </div>
+
+</div>

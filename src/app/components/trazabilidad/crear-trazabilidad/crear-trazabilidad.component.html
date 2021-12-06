@@ -1,0 +1,264 @@
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">{{ tituloPage }}</h4>
+
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Inicio</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/trazabilidad/lista">Trazabilidad</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <!-- lista de usuarios -->
+            <section class="card mt-4">
+                <form [formGroup]="trazabilidadFormulario" (ngSubmit)="guardarRegistro()">
+                    <div class="wizard-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" [class.has-error]="userDominioNoValid" [class.has-success]="userDominioValid">
+                                    <label for="nombreRol">Dominio
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <div class="select2-input">
+                                        <select class="form-control" id="dominio" name="dominio" formControlName="dominio" (change)="changeList($event.target.value)">
+                                            <option value="" disabled>Selecciona una opción</option>
+                                            <option [value]="dominios._id" *ngFor="let dominios of listaDominios">
+                                                {{ dominios.nombreDom }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" [class.has-error]="userSubDominioNoValid" [class.has-success]="userSubDominioValid">
+                                    <label for="nombreRol">SubDominio
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <div class="select2-input">
+                                        <select class="form-control" id="subDominio" name="subDominio" formControlName="subDominio">
+                                            <option value="" disabled>Selecciona una opción</option>
+                                            <option [value]="subdominios._id" *ngFor="let subdominios of listaSubDominios">
+                                                {{ subdominios.nombre }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" [class.has-error]="userConceptoNNoValid" [class.has-success]="userConceptoNValid">
+                                    <label for="nombreRol">Concepto de negocio
+                                        <span class="required-label">*</span>
+                                    </label>
+                                    <div class="select2-input">
+                                        <select class="form-control" id="conceptoNegocio" name="conceptoNegocio" formControlName="conceptoNegocio">
+                                            <option value="" disabled>Selecciona una opción</option>
+                                            <option [value]="conceptonegocios._id" *ngFor="let conceptonegocios of listaConceptonegocios">{{
+                                                conceptonegocios.nombre }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" [class.has-error]="userNombresEntNoValid" [class.has-success]="userNombresEntValid">
+                                    <label for="name">Nombre del Entidad de Dato
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <select class="form-control" id="nombreEntidadDato" name="nombreEntidadDato" formControlName="nombreEntidadDato">
+                                        <option value="" disabled>Selecciona una opción</option>
+                                    <option [value]="item._id" *ngFor="let item of listaEntidad">
+                                        {{ item.nombre }}
+                                    </option>
+                                </select>
+                                </div>
+
+
+
+                                <div class="form-group" [class.has-error]="userNombresEntNoValid" [class.has-success]="userNombresEntValid">
+                                    <label for="name">Tipo Entidad del Dato
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <select class="form-control" id="tipoEntidadDato" name="tipoEntidadDato" formControlName="tipoEntidadDato">
+                                        <option value="" disabled>Selecciona una opción</option>
+                                    <option [value]="tipoentdato._id" *ngFor="let tipoentdato of listaTipoEntDato">{{
+                                        tipoentdato.nombre }}
+                                    </option>
+                                </select>
+                                </div>
+
+                                <div class="form-group" [class.has-error]="userFuentesNoValid" [class.has-success]="userFuentesValid">
+                                    <label for="name">Fuentes y campos para el cálculo o generación del dato
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <input type="text" class="form-control" placeholder="Ingrese Nombre Fuente" id="nombreFuente" name="nombreFuente" formControlName="nombreFuente">
+                                </div>
+
+                                <div class="form-group" [class.has-error]="userFuenteOfiNoValid" [class.has-success]="userFuenteOfiValid">
+                                    <label for="name">Fuente Oficial
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <select class="form-control" id="fuenteOficial" name="fuenteOficial" formControlName="fuenteOficial">
+                                        <option value="" disabled>Selecciona una opción</option>
+                                    <option [value]="fuente._id" *ngFor="let fuente of listaFuenteOficial">
+                                        {{ fuente.nombre }}
+                                    </option>
+                                </select>
+                                </div>
+
+                                <div class="form-group" [class.has-error]="userRepoFuenteOfiNoValid" [class.has-success]="userRepoFuenteOfiValid">
+                                    <label for="name">Repositorio Fuente Oficial (BD + Esquema)
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <input type="text" class="form-control" placeholder="Ingrese Repositorio Oficial" id="repoFuenteOficial" name="repoFuenteOficial" formControlName="repoFuenteOficial">
+                                </div>
+
+                                <div class="form-group" [class.has-error]="userRutaRepoNoValid" [class.has-success]="userRutaRepoValid">
+                                    <label for="name">Ruta Origen Repositorio
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <input type="text" class="form-control" placeholder="Ingrese Ruta Origen Repositorio" id="rutaOrigenRepositorio" name="rutaOrigenRepositorio" formControlName="rutaOrigenRepositorio">
+                                </div>
+
+                                <div class="form-group" [class.has-error]="userTipoRepoNoValid" [class.has-success]="userTipoRepoValid">
+                                    <label for="name">Tipo Repositorio
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <select class="form-control" id="tipoRepositorio" name="tipoRepositorio" formControlName="tipoRepositorio">
+                                        <option value="" disabled>Selecciona una opción</option>
+                                        <option [value]="tiporepo._id" *ngFor="let tiporepo of listaTipoRepo">
+                                            {{ tiporepo.nombre }}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" [class.has-error]="userTablaFuenteOfiNoValid" [class.has-success]="userTablaFuenteOfiValid">
+                                    <label for="name">Tabla Fuente Oficial
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <input type="text" class="form-control" placeholder="Ingrese Tabla Fuente Oficial" id="tablaFuenteOficial" name="tablaFuenteOficial" formControlName="tablaFuenteOficial">
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group" [class.has-error]="userNombreCampoFuenteOfiNoValid" [class.has-success]="userNombreCampoFuenteOfiValid">
+                                    <label for="name">Nombre Campo Fuente Oficial
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <input type="text" class="form-control" placeholder="Ingrese Nombre Campo Fuente Oficial" id="nombreCampoFuenteOficial" name="nombreCampoFuenteOficial" formControlName="nombreCampoFuenteOficial">
+                                </div>
+                                <div class="form-group" [class.has-error]="userDesCampoNoValid" [class.has-success]="userDesCampoValid">
+                                    <label for="name">Descripción Campo
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <input type="text" class="form-control" placeholder="Ingrese Descripción Campo" id="descripcionCampo" name="descripcionCampo" formControlName="descripcionCampo">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="name">Data Entry
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <div class="col-lg-4 col-md-9 col-sm-8 d-flex align-items-center">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" value="si" checked id="cuadrosi" name="dataEntry" formControlName="dataEntry">
+                                            <label class="custom-control-label" for="cuadrosi">SI</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="cuadrono" name="dataEntry" value="no" formControlName="dataEntry">
+                                            <label class="custom-control-label" for="cuadrono">NO</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" [class.has-error]="userPeriodicidadNoValid" [class.has-success]="userPeriodicidadValid">
+                                    <label for="name">Periodicidad Actualización
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <select class="form-control" id="periodicidadAct" name="periodicidadAct" formControlName="periodicidadAct">
+                                        <option value="" disabled>Selecciona una opción</option>
+                                        <option [value]="periodicidad._id" *ngFor="let periodicidad of listaPeriodicidad">{{
+                                            periodicidad.nombre }}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" [class.has-error]="userProfundidadNoValid" [class.has-success]="userProfundidadValid">
+                                    <label for="name">Profundidad Dato
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <input type="text" class="form-control" placeholder="Ingrese profundidad Dato" id="profundidadDato" name="profundidadDato" formControlName="profundidadDato">
+                                </div>
+
+                                <div class="form-group" [class.has-error]="userTipoDatoNoValid" [class.has-success]="userTipoDatoValid">
+                                    <label for="name">Tipo Dato
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <input type="text" class="form-control" placeholder="Ingrese tipo dato" id="tipoDato" name="tipoDato" formControlName="tipoDato">
+                                </div>
+
+                                <div class="form-group" [class.has-error]="userLongitudNoValid" [class.has-success]="userLongitudValid">
+                                    <label for="name">Longitud
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <input type="text" class="form-control" placeholder="Ingrese Longitud" id="longitud" name="longitud" formControlName="longitud">
+                                </div>
+
+                                <div class="form-group" [class.has-error]="userValoresValidosNoValid" [class.has-success]="userValoresValidosValid">
+                                    <label for="name">Valores Válidos
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <input type="text" class="form-control" placeholder="Ingrese valores válidos" id="valoresValidos" name="valoresValidos" formControlName="valoresValidos">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="name">Es Llave Primaria?
+                                        <span class="required-label">*</span>
+                                    </label>
+                                    <div class="col-lg-4 col-md-9 col-sm-8 d-flex align-items-center">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" checked value="si" checked id="cuadrosi1" name="esLlavePrimaria" formControlName="esLlavePrimaria">
+                                            <label class="custom-control-label" for="cuadrosi1">SI</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" class="custom-control-input" id="cuadrono1" name="esLlavePrimaria" value="no" formControlName="esLlavePrimaria">
+                                            <label class="custom-control-label" for="cuadrono1">NO</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" [class.has-error]="userRespDefiNoValid" [class.has-success]="userRespDefiValid">
+                                    <label for="name">Responsable Definición
+                                    <span class="required-label">*</span>
+                                </label>
+                                    <input type="text" class="form-control" placeholder="Ingrese responsable definición" id="responsableDefinición" name="responsableDefinición" formControlName="responsableDefinición">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wizard-action">
+                        <div class="pull-right">
+                            <button type="submit" [ngClass]='botonGuardar'>
+                            <i class="fas fa-save "></i> Guardar
+                        </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </section>
+        </div>
+        <hr>
+    </div>
+</div>

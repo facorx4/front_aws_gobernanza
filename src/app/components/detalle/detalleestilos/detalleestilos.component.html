@@ -1,0 +1,188 @@
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">Detalle Estilo {{ nombre| titlecase}}</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Inicio</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/estilo/lista">Estilos</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="wizard-container wizard-round col-md-9">
+
+
+
+            <div class="wizard-body">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <!-- ingresar nombres -->
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Nombre</li>
+                                <li *ngIf="nombre != '' " class="list-group-item">{{nombre}}</li>
+                                <li *ngIf="nombre == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="nombre == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+                        <!-- nombre del usuario de red -->
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Navbar</li>
+                                <li *ngIf="(navbar != '' ) " class="list-group-item">{{navbar}}</li>
+                                <li *ngIf="navbar == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="navbar == 'null' " class="list-group-item">No registra datos</li>
+
+
+                            </ul>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Sidebar</li>
+                                <li *ngIf="sidebar != '' " class="list-group-item">{{sidebar}}</li>
+                                <li *ngIf="sidebar == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="sidebar == 'null' " class="list-group-item">No registra datos</li>
+                            </ul>
+
+                        </div>
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Header</li>
+                                <li *ngIf="header != '' " class="list-group-item">{{header}}</li>
+                                <li *ngIf="header == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="header == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">BbotonGuardaroton Crear</li>
+                                <li *ngIf="botonCrear != '' " class="list-group-item">{{botonCrear}}</li>
+                                <li *ngIf="botonCrear == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="botonCrear == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Boton Guardar</li>
+                                <li *ngIf="botonGuardar != '' " class="list-group-item">{{botonGuardar}}</li>
+                                <li *ngIf="botonGuardar == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="botonGuardar == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Boton Acciones</li>
+                                <li *ngIf="botonAcciones != '' " class="list-group-item">{{botonAcciones}}</li>
+                                <li *ngIf="botonAcciones == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="botonAcciones == 'null' " class="list-group-item">No registra datos</li>
+
+
+                            </ul>
+                        </div>
+
+                        <!-- ingresar email -->
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">BtituloDetalleoton Agregar</li>
+                                <li *ngIf="botonAgregar != '' " class="list-group-item">{{botonAgregar}}</li>
+                                <li *ngIf="botonAgregar == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="botonAgregar == 'null' " class="list-group-item">No registra datos</li>
+
+
+                            </ul>
+                        </div>
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Titulo Detalle</li>
+                                <li *ngIf="tituloDetalle != '' " class="list-group-item">{{tituloDetalle}}</li>
+                                <li *ngIf="tituloDetalle == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="tituloDetalle == 'null' " class="list-group-item">No registra datos</li>
+
+
+                            </ul>
+                        </div>
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Paginador</li>
+                                <li *ngIf="paginador != '' " class="list-group-item">{{paginador}}</li>
+                                <li *ngIf="paginador == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="paginador == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Dasboard</li>
+                                <li *ngIf="dasboard != '' " class="list-group-item">{{dasboard}}</li>
+                                <li *ngIf="dasboard == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="dasboard == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                Avatar :
+                            </label>
+                            <div class="input-file input-file-image">
+                                <input type="hidden" class="form-control" id="confirmpassword" name="confirmpassword" formControlName="logoCompania">
+                                <img src="{{ logoCompania }}" class="img-upload-preview img-circle" width="100" height="100"  alt="preview">
+   
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+
+              
+
+
+
+
+        </div>
+    </div>
+</div>

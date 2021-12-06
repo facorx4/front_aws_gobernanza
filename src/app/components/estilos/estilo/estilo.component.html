@@ -1,0 +1,232 @@
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">{{tituloPage}}</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Inicio</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/estilo/lista">Estilos</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="wizard-container wizard-round col-md-9">
+
+            <form [formGroup]="nuevoEstilo" (ngSubmit)="crearEstilo()">
+
+                <div class="wizard-body">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <!-- ingresar titulo -->
+                            <div class="form-group" [class.has-error]="nombreNoValid" [class.has-success]="nombreValid">
+                                <label for="name">Nombre Estilo
+                                    <span class="required-label">*</span>
+                                </label>
+                                <input type="text" class="form-control" placeholder="Escribe el nombre del estilo" id="nombre" name="nombre" formControlName="nombre">
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="nombreRol">Navbar
+
+                                </label>
+                                <div class="select2-input">
+                                    <select class="form-control" id="navbar" name="navbar" formControlName="navbar">
+                                        <option value= '' disabled>Selecciona una opción</option>
+                                        <option [value]="uso.value" *ngFor="let uso of listaColores">{{uso.nombre}}
+                                        </option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombreRol">Sidebar
+
+                                </label>
+                                <div class="select2-input">
+                                    <select class="form-control" id="sidebar" name="sidebar" formControlName="sidebar">
+                                        <option  value= '' disabled>Selecciona una opción</option>
+                                        <option [value]="uso.value" *ngFor="let uso of listaColores">{{uso.nombre}}
+                                        </option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombreRol">Header
+
+                                </label>
+                                <div class="select2-input">
+                                    <select class="form-control" id="header" name="header" formControlName="header">
+                                        <option  value= '' disabled>Selecciona una opción</option>
+                                        <option [value]="uso.value" *ngFor="let uso of listaColores">{{uso.nombre}}
+                                        </option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombreRol">Boton Crear
+
+                                </label>
+                                <div class="select2-input">
+                                    <select class="form-control" id="botonCrear" name="botonCrear" formControlName="botonCrear">
+                                        <option value="" disabled>Selecciona una opción</option>
+                                        <option value="{{crear.value}}" *ngFor="let crear of coloresBotones" >{{crear.nombre}}
+                                        </option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombreRol">Boton Guardar
+
+                                </label>
+                                <div class="select2-input">
+                                    <select class="form-control" id="botonGuardar" name="botonGuardar" formControlName="botonGuardar">
+                                        <option value="" disabled>Selecciona una opción</option>
+                                        <option value="{{uso.value}}" *ngFor="let uso of coloresGuardar">{{uso.nombre}}
+                                        </option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="nombreRol">Boton Acciones
+
+                                </label>
+                                <div class="select2-input">
+                                    <select class="form-control" id="botonAcciones" name="botonAcciones" formControlName="botonAcciones">
+                                        <option value="" disabled>Selecciona una opción</option>
+                                        <option value="{{uso.value}}"  *ngFor="let uso of coloresAccion">{{uso.nombre}}
+                                        </option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombreRol">Boton Agregar
+
+                                </label>
+                                <div class="select2-input">
+                                    <select class="form-control" id="botonAgregar" name="botonAgregar" formControlName="botonAgregar">
+                                        <option value="" disabled>Selecciona una opción</option>
+                                        <option value="{{uso.value}}" *ngFor="let uso of coloresBotones">{{uso.nombre}}
+                                        </option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="nombreRol">Titulo Detalle 
+
+                                </label>
+                                <div class="select2-input">
+                                    <select class="form-control" id="tituloDetalle" name="tituloDetalle" formControlName="tituloDetalle">
+                                        <option value="" disabled>Selecciona una opción</option>
+                                        <option value="{{uso.value}}"*ngFor="let uso of coloresDetalle">{{
+                                            uso.nombre}}
+                                        </option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="nombreRol">Paginador
+
+                                </label>
+                                <div class="select2-input">
+                                    <select class="form-control" id="paginador" name="paginador" formControlName="paginador">
+                                        <option value=""  disabled>Selecciona una opción</option>
+                                        <option value="{{uso.value}}" *ngFor="let uso of coloresPaginador">{{
+                                            uso.nombre}}
+                                        </option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="nombreRol">Dasboard
+
+                                </label>
+                                <div class="select2-input">
+                                    <select class="form-control" id="dasboard" name="dasboard" formControlName="dasboard">
+                                        <option value= '' disabled>Selecciona una opción</option>
+                                        <option value="{{item.value}}" *ngFor="let item of coloresDashboard">{{item.nombre}}</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    <i class="fas fa-cloud-upload-alt"></i> Subir logo :
+                                </label>
+                                <div class="input-file input-file-image">
+                                    <input type="hidden" class="form-control" id="logoCompania" name="logoCompania" formControlName="logoCompania">
+                                    <img class="img-upload-preview img-circle" width="100" height="100" src="{{nuevoEstilo.value.logoCompania}}" alt="preview">
+                                    <label for="file" style="cursor: pointer; text-decoration: underline;">Seleccione el logo de la compañia...</label>
+                                    <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="wizard-action">
+                    <div class="pull-right">
+                        <button type="submit" [ngClass]='botonGuardar'>
+                            <i class="fas fa-save "></i> Guardar
+                        </button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>

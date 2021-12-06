@@ -1,0 +1,106 @@
+<div class="page-inner">
+    <div class="page-header">
+    <h4 class="page-title">{{ tituloPage }}</h4>
+
+    <ul class="breadcrumbs">
+        <li class="nav-home">
+            <a href="#">
+                <i class="flaticon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="flaticon-right-arrow"></i>
+        </li>
+        <li class="nav-item">
+            <a href="#">Inicio</a>
+        </li>
+        <li class="separator">
+            <i class="flaticon-right-arrow"></i>
+        </li>
+        <li class="nav-item">
+            <a href="/conceptonegocio/lista">Concepto Negocio</a>
+        </li>
+    </ul>
+</div>
+    <div class="row">
+        <div class="col-md-10">
+            <!-- lista de usuarios -->
+            <section class="card mt-4">
+                <form [formGroup]="conceptonegocioFormulario" (ngSubmit)="guardarConceptonegocio()">
+                    <div class="card-header">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-md-5">
+                                <div class="form-group" [class.has-error]="nombreNoValid"
+                                [class.has-success]="nombreValid">
+                                    <label for="titulo">Nombre del Concepto Negocio
+                                        <span class="required-label">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre"
+                                        placeholder="Ingrese el nombre del concepto negocio" formControlName="nombre">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="titulo">Definición
+                                      
+                                    </label>
+
+                                    <textarea class="form-control" rows="7" id="definicion" name="definicion" formControlName="definicion">
+                                    </textarea>
+                                    
+                                </div>
+
+
+
+                                <div class="form-group" [class.has-error]="conceptoNoValid"
+                                [class.has-success]="conceptoValid">
+                                    <label for="nombreRol">Uso
+                                        <span class="required-label">*</span>
+                                    </label>
+                                    <div class="select2-input">
+                                         <select 
+                                            (change)="selectOption($event.target.options[$event.target.options.selectedIndex].text, $event.target.value )"
+                                            class="form-control" id="concepto" name="concepto"
+                                            formControlName="concepto">
+                                            <option value="" disabled>Selecciona una opción</option>
+                                            <option [value]="uso._id" *ngFor="let uso of listaConceptos">{{
+                                                uso.nombre }}
+                                            </option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+
+                                        <div class="form-group">
+                                            <label for="titulo">Calculo
+
+                                            </label>
+                                            <input type="text" class="form-control" id="calculo" name="calculo"
+                                                placeholder="Ingrese el cálculo del concepto negocio"
+                                                formControlName="calculo">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                      
+                   
+
+                    <div class="wizard-action">
+                        <div class="pull-right">
+                            <button type="submit" [ngClass]='estiloBotonNuevo'>
+                                <i class="fas fa-save "></i> Guardar
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </section>
+
+          
+        </div>
+        <hr>
+
+    </div>
+
+</div>

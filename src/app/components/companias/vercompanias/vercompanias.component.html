@@ -1,0 +1,76 @@
+<div class="page-inner">
+    <h4 class="page-title">Lista de Companías</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- encabezado de la lista de usuarios -->
+            <div class="d-flex justify-content-between">
+                <div class="d-md-inline-block">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white">
+                                <i class="fa fa-search search-icon"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Buscar compañia..." aria-label="Text input with dropdown button">
+                        
+                    </div>
+                </div>
+                <button [ngClass]='estiloBotonNuevo' routerLink="/compania/crear" [disabled]="!permisoCrear">
+                    <i class="fas fa-user-plus"></i> Nueva Compañía
+                </button>
+                
+            </div>
+
+            <section class="card mt-4">
+
+                <div class="list-group list-group-messages list-group-flush">
+
+                    <table class="table mt-3">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nombre</th>
+                                <th>Operación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of listaCompan; let i=index">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ item.nombreCompania }}</td>
+                                <td>
+                                    <div class="input-group-append">
+                                        <button [ngClass]='estiloBotonoAccion' type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Acciones
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a [ngClass]="{'disabled': !permisoEditar}" class="dropdown-item" [routerLink]="[ '/compania/detalle', item._id ]"><i class="fas fa-user-cog"></i> Detalle </a>
+                                            <a [ngClass]="{'disabled': !permisoConsultar}" class="dropdown-item" [routerLink]="[ '/compania/editar/', item._id ]"><i class="fas fa-user-edit"></i> Editar</a>
+                                            <div role="separator" class="dropdown-divider"></div>
+                                            <a [ngClass]="{'disabled': !permisoEliminar}" style="cursor: pointer;" class="dropdown-item" (click)="eliminarCompania(item._id, i)"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+               
+                <div *ngIf="!cargando && listaCompan.length <= 0" class="alert alert-warning" role="alert">
+                    <h4 class="alert-heading text-bold">No hay registros!</h4>
+                    <i class="fas fa-exclamation-triangle fa-3x"></i>
+                </div>
+
+               
+                <div *ngIf="cargando" class="alert alert-info" role="alert">
+                    <h4 class="alert-heading text-bold">Cargando!</h4>
+                    <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+                    <p class="mb-0">Por favor espere un momento...</p>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+</div>

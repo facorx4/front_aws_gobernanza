@@ -1,0 +1,54 @@
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">{{tituloPage}}</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="/inicio/0">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/inicio/0">Inicio</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/entidad/fuenteoficial/lista">Fuentes Oficiales</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="wizard-container wizard-round col-md-9">
+            <form [formGroup]="nuevaFuenteOficial" (ngSubmit)="crearFuenteOficial()">
+                <div class="wizard-body">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <!-- ingresar nombres -->
+                            <div class="form-group" [class.has-error]="nombreNoValid"
+                            [class.has-success]="nombreValid">
+                                <label for="name">Nombre
+                                    <span class="required-label">*</span>
+                                    </label>
+                                <input type="text" class="form-control" placeholder="Escribe el nombre de la Fuente Oficial" id="nombre" name="nombre" formControlName="nombre">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wizard-action">
+                    <div class="pull-right">
+                        <button type="submit" [ngClass]='botonGuardar'>
+                            <i class="fas fa-save "></i> Guardar
+                        </button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

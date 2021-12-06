@@ -1,0 +1,162 @@
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">Repositorio Consultas - Tabla Campo {{nombre| titlecase}}</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="/inicio/0">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/inicio/0">Inicio</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/repoconsulta/tablacampo/lista">Repositorio Consultas - Tabla Campo</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="wizard-container wizard-round col-md-9">
+
+
+
+            <div class="wizard-body">
+                <div class="row">
+
+                    <div class="col-md-6">
+                    
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Identificador</li>
+                                <li *ngIf="identificador != '' " class="list-group-item">{{identificador}}</li>
+                                <li *ngIf="identificador == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="identificador == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+                        <!-- nombre del usuario de red -->
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle'aria-current="true">Descripcion</li>
+                                <li *ngIf="(Descripcion != '' ) " class="list-group-item">{{Descripcion}}</li>
+                                <li *ngIf="Descripcion == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="Descripcion == 'null' " class="list-group-item">No registra datos</li>
+
+
+                            </ul>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Profundidad</li>
+                                <li *ngIf="Profundidad != '' " class="list-group-item">{{Profundidad}}</li>
+                                <li *ngIf="Profundidad == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="Profundidad == 'null' " class="list-group-item">No registra datos</li>
+                            </ul>
+
+                        </div>
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle'aria-current="true">Decimales</li>
+                                <li *ngIf="Decimales != '' "class="list-group-item">{{Decimales}}</li>
+                                <li *ngIf="Decimales == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="Decimales == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">PermiteNulos</li>
+                                <li *ngIf="PermiteNulos != '' " class="list-group-item">{{PermiteNulos}}</li>
+                                <li *ngIf="PermiteNulos == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="PermiteNulos == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+
+                     
+
+                    </div>
+
+
+                    <div class="col-md-6">
+               
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Nombre</li>
+                                <li *ngIf="nombre != '' " class="list-group-item">{{nombre}}</li>
+                                <li *ngIf="nombre == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="nombre == 'null' " class="list-group-item">No registra datos</li>
+
+
+                            </ul>
+                        </div>
+
+                        <!-- ingresar email -->
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle'  aria-current="true">Manual</li>
+                                <li *ngIf="Manual != '' " class="list-group-item">{{Manual}}</li>
+                                <li *ngIf="Manual == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="Manual == 'null' " class="list-group-item">No registra datos</li>
+
+
+                            </ul>
+                        </div>
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle'  aria-current="true">Longitud</li>
+                                <li *ngIf="Longitud != '' " class="list-group-item">{{Longitud}}</li>
+                                <li *ngIf="Longitud == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="Longitud == 'null' " class="list-group-item">No registra datos</li>
+
+
+                            </ul>
+                        </div>
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle'  aria-current="true">Llave Primaria</li>
+                                <li  *ngIf="LlavePrimaria != '' "class="list-group-item">{{LlavePrimaria}}</li>
+                                <li *ngIf="LlavePrimaria == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="LlavePrimaria == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Repositorio Tabla Campo</li>
+                                <li  *ngIf="repositorioTabla != '' "class="list-group-item">{{repositorioTabla}}</li>
+                                <li *ngIf="repositorioTabla == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="repositorioTabla == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+
+                        
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>

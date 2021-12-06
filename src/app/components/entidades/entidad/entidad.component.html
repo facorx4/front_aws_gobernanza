@@ -1,0 +1,412 @@
+<div class="page-inner">
+  <div class="page-header">
+      <h4 class="page-title">{{tituloPage}}</h4>
+      <ul class="breadcrumbs">
+          <li class="nav-home">
+              <a href="/inicio/0">
+                  <i class="flaticon-home"></i>
+              </a>
+          </li>
+          <li class="separator">
+              <i class="flaticon-right-arrow"></i>
+          </li>
+          <li class="nav-item">
+              <a href="/inicio/0">Inicio</a>
+          </li>
+          <li class="separator">
+              <i class="flaticon-right-arrow"></i>
+          </li>
+          <li class="nav-item">
+              <a href="/entidad/lista">Entidades</a>
+          </li>
+      </ul>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+      <!--formulario para la creacion de entidad -->
+      <section class="card mt-4">
+        <form [formGroup]="dataFormulario" (ngSubmit)="guardar()">
+          <div class="card-header">
+  
+    <div class="row">
+        <div class="col-md-10">
+            <!--formulario para la creacion de entidad -->
+            <section class="card mt-4">
+                <form [formGroup]="dataFormulario" (ngSubmit)="guardar()">
+                    <div class="card-header">
+
+                        <div class="wizard-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- Input para el Dominio -->
+                                    <div class="form-group"  [class.has-error]="dominioNoValid"
+                                    [class.has-success]="dominioValid">
+
+                                        <label for="dominio">Dominio
+                      <span class="required-label">*</span>
+                    </label>
+                                        <div class="select2-input">
+                                            <select class="form-control" id="dominio" name="dominio" formControlName="dominio" (change)="actualizarReporte($event.target.value)">
+                                                <option value="" disabled>Selecciona una opción</option>
+                        <option [value]="item._id" *ngFor="let item of listaDominios">{{ item.nombreDom }}
+                        </option>
+                      </select>
+                                        </div>
+                                    </div>
+                                    <!-- Input para el Subominio -->
+                                    <div class="form-group" [class.has-error]="subdominioNoValid"
+                                    [class.has-success]="subdominioValid">
+                                        <label for="subdominio">Subdominio
+                      <span class="required-label">*</span>
+                    </label>
+                                        <div class="select2-input">
+                                            <select class="form-control" id="subdominio" name="subdominio" formControlName="subdominio">
+                                                <option value="" disabled>Selecciona una opción</option>
+                        <option [value]="item._id" *ngFor="let item of listaSubdominios">{{ item.nombre }}
+                        </option>
+                      </select>
+                                        </div>
+                                    </div>
+                                    <!-- Input para el Concepto negocio -->
+                                    <div class="form-group" [class.has-error]="conceptoNegocioNoValid"
+                                    [class.has-success]="conceptoNegocioValid">
+                                        <label for="conceptoNegocio">Concepto negocio
+                      <span class="required-label">*</span>
+                    </label>
+                                        <div class="select2-input">
+                                            <select class="form-control" id="conceptoNegocio" name="conceptoNegocio" formControlName="conceptoNegocio">
+                                                <option value="" disabled>Selecciona una opción</option>
+                        <option [value]="item._id" *ngFor="let item of listaConceptoNegocio">{{ item.nombre }}
+                        </option>
+                      </select>
+                                        </div>
+                                    </div>
+                                    <!-- Input para el Nombre entidad dato -->
+                                    <div class="form-group" [class.has-error]="nombreNoValid"
+                                    [class.has-success]="nombreValid">
+                                        <label for="nombre">Nombre entidad dato
+                      <span class="required-label">*</span>
+                    </label>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre de la entidad del dato" formControlName="nombre">
+                                    </div>
+                                    <!-- Input para el Data Owner -->
+                                    <div class="form-group" [class.has-error]="dataOwnerNoValid"
+                                    [class.has-success]="dataOwnerValid">
+                                        <label for="descripcion">Data Owner
+                      <span class="required-label">*</span>
+                    </label>
+                                        <div class="select2-input">
+                                            <select class="form-control" id="dataOwner" name="dataOwner" formControlName="dataOwner">
+                                                <option value="" disabled>Selecciona una opción</option>
+                        <option [value]="item._id" *ngFor="let item of listaDataOwner">{{ item.userNombres }}
+                        </option>
+                      </select>
+                                        </div>
+                                    </div>
+                                    <!-- Input para el Definicion de negocio -->
+                                    <div class="form-group" [class.has-error]="definicionNegocioNoValid"
+                                    [class.has-success]="definicionNegocioValid">
+                                        <label for="definicionNegocio">Definicion de negocio
+                      <span class="required-label">*</span>
+                    </label>
+                                        <input type="text" class="form-control" id="definicionNegocio" name="definicionNegocio" placeholder="Ingrese el nombre de la entidad del dato" formControlName="definicionNegocio">
+                                    </div>
+                                    <!-- Input para el Tipo Entidad Dato -->
+                                    <div class="form-group" [class.has-error]="tipoEntidadNoValid"
+                                    [class.has-success]="tipoEntidadValid">
+                                        <label for="tipoEntidad">Tipo Entidad Dato
+                      <span class="required-label">*</span>
+                    </label>
+                                        <div class="select2-input">
+                                            <select class="form-control" id="tipoEntidad" name="tipoEntidad" formControlName="tipoEntidad">
+                                                <option value="" disabled>Selecciona una opción</option>
+                        <option [value]="item._id" *ngFor="let item of listaTipoEntidad">{{ item.nombre }}
+                        </option>
+                      </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Input para logica calculo -->
+                                    <div class="form-group" [class.has-error]="logicaCalculoNoValid"
+                                    [class.has-success]="logicaCalculoValid">
+                                        <label for="logicaCalculo">Logica Calculo
+                      <span class="required-label">*</span>
+                    </label>
+                                        <input type="text" class="form-control" id="logicaCalculo" name="logicaCalculo" placeholder="Ingrese la logica de Calculo" formControlName="logicaCalculo">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <!-- Input para el Valores de Ejemplo -->
+                                    <div class="form-group" [class.has-error]="ejemploValoresNoValid"
+                                    [class.has-success]="ejemploValoresValid">
+                                        <label for="ejemploValores">Valores de Ejemplo
+                      <span class="required-label">*</span>
+                    </label>
+                                        <input type="text" class="form-control" id="ejemploValores" name="ejemploValores" placeholder="Ingrese el nombre de la entidad del dato" formControlName="ejemploValores">
+                                    </div>
+                                    <!-- Input para el Prioridad -->
+                                    <div class="form-group" [class.has-error]="prioridadNoValid"
+                                    [class.has-success]="prioridadValid">
+                                        <label for="prioridad">Prioridad
+                      <span class="required-label">*</span>
+                    </label>
+                                        <div class="select2-input">
+                                            <select class="form-control" id="prioridad" name="prioridad" formControlName="prioridad">
+                                                <option value="" disabled>Selecciona una opción</option>
+                        <option [value]="item._id" *ngFor="let item of listaPrioridad">{{ item.nombre }}
+                        </option>
+                      </select>
+                                        </div>
+                                    </div>
+                                    <!-- Input para el Indicador Dimencion -->
+                                    <div class="form-group" [class.has-error]="indicadorDimencionNoValid"
+                                    [class.has-success]="indicadorDimencionValid">
+                                        <label for="indicadorDimencion">Indicador Dimencion
+                      <span class="required-label">*</span>
+                    </label>
+                                        <div class="select2-input">
+                                            <select class="form-control" id="indicadorDimencion" name="indicadorDimencion" formControlName="indicadorDimencion">
+                                                <option value="" disabled>Selecciona una opción</option>
+                                                <option [value]="item._id" *ngFor="let item of listaIndicadorDimencion">{{ item.nombre }}
+                        </option>
+                      </select>
+                                        </div>
+                                    </div>
+                                    <!-- Input para el Periodicidad generacion -->
+                                    <div class="form-group" [class.has-error]="periodicidadGeneracionNoValid"
+                                    [class.has-success]="periodicidadGeneracionValid">
+                                        <label for="periodicidadGeneracion">Periodicidad generacion
+                      <span class="required-label">*</span>
+                    </label>
+                                        <div class="select2-input">
+                                            <select class="form-control" id="periodicidadGeneracion" name="periodicidadGeneracion" formControlName="periodicidadGeneracion">
+                                                <option value="" disabled>Selecciona una opción</option>
+                                                <option [value]="item._id" *ngFor="let item of listaPeriodicidadGeneracion">{{ item.nombre
+                          }}
+                        </option>
+                      </select>
+                                        </div>
+                                    </div>
+                                    <!-- Input para el pantalla -->
+                                    <div class="form-group" [class.has-error]="pantallaNoValid"
+                                    [class.has-success]="pantallaValid">
+                                        <label for="pantalla">Pantalla/Campo fuente oficial
+                      <span class="required-label">*</span>
+                    </label>
+                                        <input type="text" class="form-control" id="pantalla" name="pantalla" placeholder="Ingrese la pantalla" formControlName="pantalla">
+                                    </div>
+
+                                    <!-- Input para el campo fuente oficial -->
+                                    <div class="form-group" [class.has-error]="campoFuenteNoValid"
+                                    [class.has-success]="campoFuenteValid">
+                                        <label for="campoFuente">Campo fuente oficial
+                      <span class="required-label">*</span>
+                    </label>
+                                        <input type="text" class="form-control" id="campoFuente" name="campoFuente" placeholder="Ingrese el Campo fuente oficial" formControlName="campoFuente">
+                                    </div>
+                                    <!-- Input para La fuente oficial -->
+                                    <div class="form-group" [class.has-error]="fuenteOficialNoValid"
+                                    [class.has-success]="fuenteOficialValid">
+                                        <label for="fuenteOficial">Fuente oficial
+                      <span class="required-label">*</span>
+                    </label>
+                                        <div class="select2-input">
+                                            <select class="form-control" id="fuenteOficial" name="fuenteOficial" formControlName="fuenteOficial">
+                                                <option value="" disabled>Selecciona una opción</option>
+                                                <option [value]="item._id" *ngFor="let item of listaFuenteOficial">{{ item.nombre }}
+                        </option>
+                      </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Input para el Reporte en el que se visualiza -->
+                        <div class="form-group" [class.has-error]="reportesNoValid"
+                        [class.has-success]="reportesValid">
+                            <label for="reportes">Reporte en el que se visualiza
+                <span class="required-label">*</span>
+              </label>
+                            <div class="select2-input">
+                                <select (change)="selectReporte($event.target.options[$event.target.options.selectedIndex].text, $event.target.value)" class="form-control" id="reportes" name="reportes" formControlName="reportes">
+                                    <option value="" disabled>Selecciona una opción</option>
+                                    <option [value]="item._id" *ngFor="let item of listaReportes">{{ item.nombre }}
+                  </option>
+                </select>
+                <br>
+                                <button type="button" [ngClass]='botonAgregar' (click)="agregarReporte()">
+                  <i class="fas fa-user-plus"></i>
+                  Agregar
+                </button>
+                            </div>
+                        </div>
+                        <div class="list-group list-group-messages list-group-flush">
+                            <section class="card mt-4">
+
+                                <!-- imprimimos la lista de roles para los usuarios -->
+                                <div class="list-group list-group-messages list-group-flush">
+
+                                    <table class="table mt-3">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Reporte</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of selectedReporte; let i=index ">
+                                                <td>{{ i + 1 }}</td>
+                                                <td>{{ item.nombre }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger " (click)="quitarReporte(i)">
+                            <i class="fas fa-user-plus"></i>
+                            Quitar
+                          </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </section>
+                        </div>
+
+
+                        <!-- Input para el Aplicativo -->
+                        <div class="form-group" [class.has-error]="aplicativosGeneracionNoValid"
+                        [class.has-success]="aplicativosGeneracionValid">
+                            <label for="aplicativos">Aplicativos
+                <span class="required-label">*</span>
+              </label>
+                            <div class="select2-input">
+                                <select (change)="selectAplicativos($event.target.options[$event.target.options.selectedIndex].text, $event.target.value)" class="form-control" id="aplicativos" name="aplicativos" formControlName="aplicativos">
+                                    <option value="" disabled>Selecciona una opción</option>
+                  <option [value]="item._id" *ngFor="let item of listaAplicativos">{{ item.nombre }}
+                  </option>
+                </select>
+                <br>
+                                <button type="button" [ngClass]='botonAgregar' (click)="agregarAplicativo()">
+                  <i class="fas fa-user-plus"></i>
+                  Agregar
+                </button>
+                            </div>
+                        </div>
+                        <div class="list-group list-group-messages list-group-flush">
+                            <section class="card mt-4">
+
+                                <div class="list-group list-group-messages list-group-flush">
+
+                                    <table class="table mt-3">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Aplicativo</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of selectedAplicativos; let i=index ">
+                                                <td>{{ i + 1 }}</td>
+                                                <td>{{ item.nombre }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger " (click)="quitarAplicativo(i)">
+                            <i class="fas fa-user-plus"></i>
+                            Quitar
+                          </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </section>
+                        </div>
+
+
+                        <!-- Input para el otros consumidores del dato -->
+                        <div class="form-group" [class.has-error]="otrosConsumidoresNoValid"
+                        [class.has-success]="otrosConsumidoresValid">
+                            <label for="otrosConsumidores">Otros consumidores del dato
+                <span class="required-label">*</span>
+              </label>
+                            <div class="select2-input">
+                                <select (change)="selectOtros($event.target.options[$event.target.options.selectedIndex].text, $event.target.value)" class="form-control" id="otrosConsumidores" name="otrosConsumidores" formControlName="otrosConsumidores">
+                                    <option value="" disabled>Selecciona una opción</option>
+                  <option [value]="item._id" *ngFor="let item of listaOtrosConsumidores">{{ item.nombre }}
+                  </option>
+                </select>
+                <br>
+                                <button type="button" [ngClass]='botonAgregar' (click)="agregarOtros()">
+                  <i class="fas fa-user-plus"></i>
+                  Agregar
+                </button>
+                            </div>
+                        </div>
+                        <div class="list-group list-group-messages list-group-flush">
+                            <section class="card mt-4">
+                                <div class="list-group list-group-messages list-group-flush">
+                                    <table class="table mt-3">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Otro consumidor</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of selectedOtros; let i=index ">
+                                                <td>{{ i + 1 }}</td>
+                                                <td>{{ item.nombre }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-danger " (click)="quitarOtros(i)">
+                            <i class="fas fa-user-plus"></i>
+                            Quitar
+                          </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </section>
+                        </div>
+                        <!-- input validado por data owner  -->
+                        <div class="form-group" [class.has-error]="validadoNoValid"
+                        [class.has-success]="validadoValid">
+                            <label>Validado por data owner
+                <span class="required-label">*</span>
+              </label>
+                            <div class="col-lg-4 col-md-9 col-sm-8 d-flex align-items-center">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" value="activo" checked id="activo" name="validado" formControlName="validado">
+                                    <label class="custom-control-label" for="activo">Si</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="inactivo" name="validado" value="inactivo" formControlName="validado">
+                                    <label class="custom-control-label" for="inactivo">No</label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="list-group list-group-messages list-group-flush">
+                    </div>
+                    <div class="wizard-action">
+                        <div class="pull-right">
+                            <button type="submit" [ngClass]='botonGuardar'>
+                <i class="fas fa-save "></i> Guardar
+              </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </section>
+        </div>
+        <hr>
+
+    </div>
+
+</div>

@@ -1,0 +1,212 @@
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">Detalle Reporte {{ nombreReporte| titlecase}}</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Inicio</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/reporte/lista">Reportes</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="wizard-container wizard-round col-md-9">
+
+
+
+            <div class="wizard-body">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <!-- ingresar nombres -->
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Identificador</li>
+                                <li *ngIf="identificador != '' " class="list-group-item">{{identificador}}</li>
+                                <li *ngIf="identificador == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="identificador == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+                        <!-- nombre del usuario de red -->
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Propietario</li>
+                                <li *ngIf="(propietario != '' ) " class="list-group-item">{{propietario}}</li>
+                                <li *ngIf="propietario == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="propietario == 'null' " class="list-group-item">No registra datos</li>
+
+
+                            </ul>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Dominio</li>
+                                <li *ngIf="DominiosCompania != '' " class="list-group-item">{{DominiosCompania}}</li>
+                                <li *ngIf="DominiosCompania == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="DominiosCompania == 'null' " class="list-group-item">No registra datos</li>
+                            </ul>
+
+                        </div>
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Periodicidad</li>
+                                <li *ngIf="periodicidad != '' " class="list-group-item">{{periodicidad}}</li>
+                                <li *ngIf="periodicidad == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="periodicidad == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Indicadores</li>
+                                <li *ngIf="indicadores != '' " class="list-group-item">{{indicadores}}</li>
+                                <li *ngIf="indicadores == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="indicadores == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Nombre cuadro de mando</li>
+                                <li *ngIf="nombreCuadro != '' " class="list-group-item">{{nombreCuadro}}</li>
+                                <li *ngIf="nombreCuadro == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="nombreCuadro == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Nombre</li>
+                                <li *ngIf="nombreReporte != '' " class="list-group-item">{{nombreReporte}}</li>
+                                <li *ngIf="nombreReporte == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="nombreReporte == 'null' " class="list-group-item">No registra datos</li>
+
+
+                            </ul>
+                        </div>
+
+                        <!-- ingresar email -->
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Descripción</li>
+                                <li *ngIf="descripcion != '' " class="list-group-item">{{descripcion}}</li>
+                                <li *ngIf="descripcion == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="descripcion == 'null' " class="list-group-item">No registra datos</li>
+
+
+                            </ul>
+                        </div>
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">¿Es regulatorio?</li>
+                                <li *ngIf="regulatorio != '' " class="list-group-item">{{regulatorio}}</li>
+                                <li *ngIf="regulatorio == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="regulatorio == 'null' " class="list-group-item">No registra datos</li>
+
+
+                            </ul>
+                        </div>
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Dimenciones</li>
+                                <li *ngIf="dimenciones != '' " class="list-group-item">{{dimenciones}}</li>
+                                <li *ngIf="dimenciones == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="dimenciones == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">¿Se presenta en algún cuadro de mando?</li>
+                                <li *ngIf="cuadro != '' " class="list-group-item">{{cuadro}}</li>
+                                <li *ngIf="cuadro == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="cuadro == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+
+                        <div class="form-group">
+                            <ul class="list-group">
+                                <li [ngClass]='tituloDetalle' aria-current="true">Validado por propietario del reporte</li>
+                                <li *ngIf="validado != '' " class="list-group-item">{{validado}}</li>
+                                <li *ngIf="validado == '' " class="list-group-item">No registra datos</li>
+                                <li *ngIf="validado == 'null' " class="list-group-item">No registra datos</li>
+
+                            </ul>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+
+                <div class="list-group list-group-messages list-group-flush">
+                    <section class="card mt-4">
+
+                        <div class="list-group list-group-messages list-group-flush">
+
+                            <table class="table mt-3">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Áreas</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of listaareas; let i=index ">
+                                        <td>{{ i + 1 }}</td>
+                                        <td>{{ item.nombre }}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </section>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>

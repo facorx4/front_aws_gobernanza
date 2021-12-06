@@ -1,0 +1,174 @@
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">Compañía: {{ tituloCompania }}</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Inicio</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="compania/lista">Compania</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <!-- lista de usuarios -->
+            <section class="card mt-4">
+                <!--<form [formGroup]="areaCompania">-->
+                <div class="card-header">
+                    <h4 class="page-title">ÁREAS</h4>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-md-inline-block">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white">
+                                            <i class="fa fa-search search-icon"></i>
+                                        </span>
+                                </div>
+                                <input type="text" class="form-control" name="filterGeneralArea" placeholder="Buscar área..." [(ngModel)]="filterGeneralArea">
+                            </div>
+                        </div>
+                        <button [disabled]="!permisoCrear" [ngClass]='estiloBotonNuevo' routerLink="/area/crear/1/{{ idCompania }}">
+                            <i class="fas fa-user-plus"></i> Nueva Área
+                        </button>
+                    </div>
+
+                    <div class="list-group list-group-messages list-group-flush">
+                        <section class="card mt-4">
+
+                            <div class="list-group list-group-messages list-group-flush">
+
+                                <table class="table mt-3 table-hover ">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Operación</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let area of listAreas | nombrearea:filterGeneralArea | generalarea:filterGeneralArea | paginate: { itemsPerPage: 5, currentPage: pageActual, id: 'first' }; let i=index">
+                                            <td>{{ i + 1 }}</td>
+                                            <td>{{ area.nombre }}</td>
+                                            <td>
+                                                <div class="input-group-append">
+                                                    <button [ngClass]='botonAccion' type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            Acciones
+                                                        </button>
+                                                    <div class="dropdown-menu">
+                                                        <a [ngClass]="{'disabled': !permisoEditar}" class="dropdown-item" [routerLink]="[ '/area/editar/2/', area._id ]"><i class="fas fa-user-edit"></i> Editar</a>
+                                                        <div role="separator" class="dropdown-divider"></div>
+                                                        <a [ngClass]="{'disabled': !permisoEliminar}" style="cursor: pointer;" class="dropdown-item" (click)="eliminarArea(area._id, i)"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                             <!-- alert para mostrar cuando no hay registros -->
+                <div *ngIf="!cargandoAreas && listAreas.length <= 0" class="alert alert-warning" role="alert">
+                    <h4 class="alert-heading text-bold">No hay registros!</h4>
+                    <i class="fas fa-exclamation-triangle fa-3x"></i>
+                </div>
+
+                <!-- alert para mostrar cuando esta cargando los registros del API  -->
+                <div *ngIf="cargandoAreas" class="alert alert-info" role="alert">
+                    <h4 class="alert-heading text-bold">Cargando!</h4>
+                    <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+                    <p class="mb-0">Por favor espere un momento...</p>
+                </div>
+
+                        </section>
+                        <pagination-controls [ngClass]='colorPaginador' (pageChange)="pageActual = $event" id="first"></pagination-controls>
+                    </div>
+
+                    <div class="card-header">
+                        <h4 class="page-title">DOMINIOS</h4>
+                        <div class="d-flex justify-content-between">
+                            <div class="d-md-inline-block">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-white">
+                                            <i class="fa fa-search search-icon"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control" name="filterGeneralDom" placeholder="Buscar dominio..." [(ngModel)]="filterGeneralDom">
+                                </div>
+                            </div>
+                            <button  [disabled]="!permisoCrear" [ngClass]='estiloBotonNuevo' routerLink="/dominio/crear/1/{{ idCompania }}">
+                                <i class="fas fa-user-plus"></i> Nuevo Dominio
+                            </button>
+                        </div>
+
+                        <div class="list-group list-group-messages list-group-flush">
+                            <section class="card mt-4">
+
+                                <div class="list-group list-group-messages list-group-flush" style="overflow-x:auto;">
+
+                                    <table class="table mt-3 table-hover ">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Descripción</th>
+                                                <th scope="col">Operación</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let domin of listDomin | nombredom:filterGeneralDom | generaldom:filterGeneralDom | paginate: { itemsPerPage: 5, currentPage: pageActual2, id: 'second' }; let i=index ">
+                                                <td>{{ i + 1 }}</td>
+                                                <td>{{ domin.nombreDom }}</td>
+                                                <td>{{ domin.detalle }}</td>
+                                                <td>
+                                                    <div class="input-group-append">
+                                                        <button [ngClass]='botonAccion' type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                Acciones
+                                                            </button>
+                                                        <div class="dropdown-menu">
+                                                            <a [ngClass]="{'disabled': !permisoConsultar}"  class="dropdown-item" [routerLink]="[ '/dominio/detalle', domin.compania, domin._id ]"><i class="fas fa-user-cog"></i> Detalle </a>
+                                                            <a [ngClass]="{'disabled': !permisoEditar}" class="dropdown-item" [routerLink]="[ '/dominio/editar/2', domin._id ]"><i class="fas fa-user-edit"></i> Editar</a>
+                                                            <div role="separator" class="dropdown-divider"></div>
+                                                            <a  [ngClass]="{'disabled': !permisoEliminar}" style="cursor: pointer;" class="dropdown-item" (click)="eliminarDominio(domin._id, i)"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                 <!-- alert para mostrar cuando no hay registros -->
+                <div *ngIf="!cargando && listDomin.length <= 0" class="alert alert-warning" role="alert">
+                    <h4 class="alert-heading text-bold">No hay registros!</h4>
+                    <i class="fas fa-exclamation-triangle fa-3x"></i>
+                </div>
+
+                <!-- alert para mostrar cuando esta cargando los registros del API  -->
+                <div *ngIf="cargando" class="alert alert-info" role="alert">
+                    <h4 class="alert-heading text-bold">Cargando!</h4>
+                    <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+                    <p class="mb-0">Por favor espere un momento...</p>
+                </div>
+
+                            </section>
+                        </div>
+
+                        <pagination-controls [ngClass]='colorPaginador' (pageChange)="pageActual2 = $event" id="second"></pagination-controls>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <hr>
+    </div>
+</div>

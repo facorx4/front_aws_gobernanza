@@ -1,0 +1,64 @@
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">Detalle Identificador/dimensión {{nombre | titlecase}}</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="#">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="#">Inicio</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="/entidad/indicador/lista">Indicador/Dimensión</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="wizard-container wizard-round col-md-9">
+ 
+           
+
+                <div class="wizard-body">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <!-- ingresar nombres -->
+                            <div class="form-group" >
+                                <ul class="list-group">
+                                    <li [ngClass]='tituloDetalle' aria-current="true">Nombre</li>
+                                    <li *ngIf="nombre != '' "class="list-group-item">{{nombre}}</li>
+                                    <li *ngIf="nombre == '' " class="list-group-item">No registra datos</li>
+                                    <li *ngIf="nombre == 'null' " class="list-group-item">No registra datos</li>
+                                                                   
+                                  </ul>
+                            </div>
+                            
+                         
+
+                            
+
+
+                            
+                        </div>
+
+
+                       
+                </div>
+              
+                
+
+           
+        </div>
+    </div>
+</div>
+    
+
+

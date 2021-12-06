@@ -1,0 +1,260 @@
+<div class="page-inner">
+    <div class="page-header">
+    <h4 class="page-title">{{ tituloPage }}</h4>
+
+    <ul class="breadcrumbs">
+        <li class="nav-home">
+            <a href="#">
+                <i class="flaticon-home"></i>
+            </a>
+        </li>
+        <li class="separator">
+            <i class="flaticon-right-arrow"></i>
+        </li>
+        <li class="nav-item">
+            <a href="#">Inicio</a>
+        </li>
+        <li class="separator">
+            <i class="flaticon-right-arrow"></i>
+        </li>
+        <li class="nav-item">
+            <a href="/reglacalidad/lista">Reglas de calidad</a>
+        </li>
+    </ul>
+</div>
+<div class="row">
+    <div class="wizard-container wizard-round col-md-9">
+
+        <form [formGroup]="reglacalidadFormulario" (ngSubmit)="guardarReglaCalidad()">
+
+            <div class="wizard-body">
+                <div class="row">
+
+                    <div class="col-md-6">
+                       
+                        
+                        <div class="form-group" [class.has-error]="concepttoNegocioNoValid"
+                        [class.has-success]="concepttoNegocioValid">
+                            <label for="conceptoNegocio">Concepto de negocio
+                                <span class="required-label">*</span>
+                            </label>
+                            <div class="select2-input">
+                                <select
+                                    (change)="selectOptionConceptoN($event.target.options[$event.target.options.selectedIndex].text, $event.target.value )"
+                                    class="form-control" id="conceptoNegocio" name="conceptoNegocio"
+                                    formControlName="conceptoNegocio">
+                                    <option value="" disabled>Selecciona una opción</option>
+                                    <option [value]="item._id" *ngFor="let item of listaConceptonegocios">{{
+                                        item.nombre }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        
+
+
+                       
+                     <div class="form-group" [class.has-error]="nombreEntidadDatoNoValid"
+                     [class.has-success]="nombreEntidadDatoValid">
+                            <label for="nombreEntidadDato">Nombre del Entidad de Dato
+                                <span class="required-label">*</span>
+                            </label>
+                            <div class="select2-input">
+                                <select
+                                    (change)="selectOptionEntidad($event.target.options[$event.target.options.selectedIndex].text, $event.target.value )"
+                                    class="form-control" id="nombreEntidadDato" name="nombreEntidadDato"
+                                    formControlName="nombreEntidadDato">
+                                    <option value="" disabled>Selecciona una opción</option>
+                                    <option [value]="item._id" *ngFor="let item of listaEntidad">{{
+                                        item.nombre }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div> 
+
+                        <div class="form-group" [class.has-error]="identificadorNoValid"
+                        [class.has-success]="identificadorValid">
+                            <label for="name">Identificador
+                                <span class="required-label">*</span>
+                            </label>
+                            <input type="text" class="form-control" placeholder="Ingrese identificador"
+                                id="identificador" name="identificador" formControlName="identificador">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="titulo">Descripción
+                                
+                            </label>
+
+                            <textarea class="form-control" rows="7" id="descripcion" name="descripcion"
+                                formControlName="descripcion">
+                            </textarea>
+
+                        </div>
+
+
+                        <div class="form-group" [class.has-error]="tipoNoValid"
+                        [class.has-success]="tipoValid">
+                            <label for="nombreRol">Tipo de regla de calidad
+                                <span class="required-label">*</span>
+                            </label>
+                            <div class="select2-input">
+                                <select
+                                    (change)="selectOptionTipoRegla($event.target.options[$event.target.options.selectedIndex].text, $event.target.value )"
+                                    class="form-control" id="tipoRegla" name="tipoRegla"
+                                    formControlName="tipo">
+                                    <option value="" disabled>Selecciona una opción</option>
+                                    <option [value]="tipo._id" *ngFor="let tipo of listaTipo">{{
+                                        tipo.nombre }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                       
+
+
+
+
+
+
+
+                    </div>
+
+                    <div class="col-md-6">
+
+
+                        <div class="form-group" [class.has-error]="principioNoValid"
+                        [class.has-success]="principioValid">
+                            <label for="principio">Principio de calidad asociado
+                                <span class="required-label">*</span>
+                            </label>
+                            <div class="select2-input">
+                                <select
+                                    (change)="selectOptionPrincipio($event.target.options[$event.target.options.selectedIndex].text, $event.target.value )"
+                                    class="form-control" id="principio" name="principio"
+                                    formControlName="principio">
+                                    <option value="" disabled>Selecciona una opción</option>
+                                    <option [value]="item._id" *ngFor="let item of listaPrin">{{
+                                        item.nombre }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="name">Umbral Superior
+                                
+                            </label>
+                            <input type="text" class="form-control" placeholder="Ingrese umbral superior"
+                                id="umbralSuperior" name="umbralSuperior" formControlName="umbralSuperior">
+                        </div>
+
+                     
+                        
+
+                          <div class="form-group">
+                            <label for="name">Umbral Inferior
+                                
+                            </label>
+                            <input type="text" class="form-control" placeholder="Ingrese umbral inferior"
+                                id="umbralInferior" name="umbralInferior" formControlName="umbralInferior">
+                        </div>
+
+                        <div class="form-group" [class.has-error]="periodicidadNoValid"
+                        [class.has-success]="periodicidadValid">
+                            <label for="nombreRol">Periodicidad
+                                <span class="required-label">*</span>
+                            </label>
+                            <div class="select2-input">
+                                <select
+                                    (change)="selectOptionPeriodicidad($event.target.options[$event.target.options.selectedIndex].text, $event.target.value )"
+                                    class="form-control" id="periodicidad" name="periodicidad"
+                                    formControlName="periodicidad">
+                                    <option value="" disabled>Selecciona una opción</option>
+                                    <option [value]="periodicidad._id" *ngFor="let periodicidad of listaPerio">{{
+                                        periodicidad.nombre }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group" [class.has-error]="aplicativoNoValid"
+                        [class.has-success]="aplicativoValid">
+                            <label for="nombreRol">Aplicativo
+                                <span class="required-label">*</span>
+                            </label>
+                            <div class="select2-input">
+                                <select
+                                    (change)="selectOptionAplicativo($event.target.options[$event.target.options.selectedIndex].text, $event.target.value )"
+                                    class="form-control" id="aplicativo" name="aplicativo"
+                                    formControlName="aplicativo">
+                                    <option value="" disabled>Selecciona una opción</option>
+                                    <option [value]="aplicativo._id" *ngFor="let aplicativo of listaApli">{{
+                                        aplicativo.nombre }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group" [class.has-error]="validadoNoValid"
+                        [class.has-success]="validadoValid">
+                            <label>Validado por Data Owner
+                                <span class="required-label">*</span>
+                            </label>
+                            <div class="col-lg-4 col-md-9 col-sm-8 d-flex align-items-center">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" value="si" checked
+                                        id="cuadrosi" name="validado" formControlName="validado">
+                                    <label class="custom-control-label" for="cuadrosi">SI</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="cuadrono" name="validado"
+                                        value="no" formControlName="validado">
+                                    <label class="custom-control-label" for="cuadrono">NO</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" value="validar" checked
+                                        id="validar" name="validado" formControlName="validado">
+                                    <label class="custom-control-label" for="validar">Validar</label>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+            
+
+
+
+
+            <div class="wizard-action">
+                <div class="pull-right">
+                    <button type="submit" [ngClass]='botonGuardar'>
+                        <i class="fas fa-save "></i> Guardar
+                    </button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+</div>
